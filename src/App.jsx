@@ -1,10 +1,11 @@
 import './App.css'
+import Profile from "./pages/Profile/profile.jsx";
 
 function App() {
 
   return (
     <>
-
+        <Profile/>
     </>
   )
 }
