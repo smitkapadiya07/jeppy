@@ -3,7 +3,7 @@ import {Box, Container, Grid, Typography} from "@mui/material";
 
 function Header() {
     return (
-        <Box sx={{backgroundColor: "#004c7e", padding: "40px 0", margin: "82px 0 0", color: "white"}}>
+        <Box sx={{backgroundColor: "#004c7e", padding: "40px 0", color: "white"}}>
             <Container maxWidth={"lg"}>
                 <Grid container alignItems="center">
                     <Grid item xs={6}>

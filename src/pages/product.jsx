@@ -1,9 +1,11 @@
 import React from 'react';
 import ProductsCategories from "../component/product/productsCategories.jsx";
+import Header from "../component/global/header.jsx";
 
-function Product(props) {
+function Product() {
     return (
         <>
+            <Header />
             <ProductsCategories/>
         </>
     );
