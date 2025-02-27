@@ -1,0 +1,274 @@
+import React, { useState, useEffect } from "react";
+import {
+    AppBar,
+    Toolbar,
+    Typography,
+    MenuItem,
+    Menu,
+    IconButton,
+    Box,
+    List,
+    ListItem,
+    ListItemText,
+    Collapse, Select,
+} from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
+import MenuIcon from "@mui/icons-material/Menu";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
+import logo from "../../assets/global/Jeppy_Logo-1_121x68.jpg";
+
+function Navigation() {
+    const menuItems = [
+        { label: "HOME", link: "/" },
+        { label: "PROFILE", link: "/profile" },
+        { label: "PRODUCT", submenu: "product" },
+        { label: "R & D", submenu: "rnd" },
+        { label: "CONTACT", link: "/contact" },
+    ];
+
+    const productSubmenu = [
+        { label: "2D PAPAD SNACKS", path: "/product/2d-papad-snacks" },
+        { label: "3D PAPAD SNACKS", path: "/product/3d-papad-snacks" },
+        { label: "GLUTEN FREE PAPAD SNACKS", path: "/product/gluten-free-papad-snacks" },
+        { label: "MICRO PAPAD PELLETS", path: "/product/micro-papad-pellets" },
+        { label: "POTATO PAPAD SNACKS", path: "/product/potato-papad-snacks" },
+        { label: "PROTEIN PAPAD SNACKS", path: "/product/protein-papad-snacks" },
+        { label: "SHEETED PAPAD SNACKS", path: "/product/sheeted-papad-snacks" },
+        { label: "VEGGI SNACKS PAPAD SNACKS", path: "/product/veggi-snacks-papad-snacks" }
+    ];
+
+
+    const rndSubmenu = [
+        { label: "SHAPE", path: "/rnd/shape" },
+        { label: "INGREDIENTS", path: "/rnd/ingredients" },
+        { label: "METHODS", path: "/rnd/methods" },
+    ];
+
+    const languages = [
+        { label: "English", value: "english" },
+        { label: "Español", value: "spanish" },
+        { label: "Français", value: "french" },
+    ];
+    const [selectedLanguage, setSelectedLanguage] = useState(languages[0]?.value || "english");
+
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [openSubmenu, setOpenSubmenu] = useState(null);
+    const [anchorEl, setAnchorEl] = useState(null);
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth <= 768);
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+    const handleMenuOpen = (event, menu) => {
+        if (!isMobile && !mobileMenuOpen) {
+            setAnchorEl(event.currentTarget);
+            setOpenSubmenu(menu);
+        }
+    };
+
+    const handleMenuClose = () => {
+        setAnchorEl(null);
+        setOpenSubmenu(null);
+    };
+
+    return (
+        <>
+            <AppBar position="static" sx={{ backgroundColor: "white", color: "black", boxShadow: "none", padding: "5px 20px" }}>
+                <Toolbar sx={{ display: "flex", justifyContent: { md: "space-around", xs: "space-between" } }}>
+                    <Box>
+                        <img src={logo} alt="logo" style={{ height: "60px", objectFit: "cover" }} />
+                    </Box>
+
+                    {/* Desktop Menu */}
+                    <Box sx={{ display: { xs: "none", md: "flex" }, gap: 4, alignItems: "center" }}>
+                        {menuItems.map((item, index) => (
+                            <Box key={index} onMouseLeave={handleMenuClose}>
+                                <Typography
+                                    variant="body1"
+                                    component="a"
+                                    href={item.link}
+                                    sx={{
+                                        textDecoration: "none",
+                                        color: "#373737",
+                                        fontSize: "14px",
+                                        cursor: "pointer",
+                                        letterSpacing: "1px",
+                                        fontWeight: 600,
+                                        "&:hover": { borderBottom: "2px solid #373737" },
+                                    }}
+                                    onMouseEnter={(!isMobile && !mobileMenuOpen && item.submenu) ? (e) => handleMenuOpen(e, item.submenu) : undefined}
+                                >
+                                    {item.label}
+                                </Typography>
+
+                                {item.submenu && (
+                                    <Menu
+                                        anchorEl={anchorEl}
+                                        open={!isMobile && !mobileMenuOpen && openSubmenu === item.submenu}
+                                        onClose={handleMenuClose}
+                                        MenuListProps={{
+                                            onMouseEnter: () => setOpenSubmenu(item.submenu),
+                                            onMouseLeave: handleMenuClose,
+                                        }}
+                                        sx={{
+                                            "& .MuiPaper-root": { backgroundColor: "#373737", color: "white", width: "220px" },
+                                        }}
+                                    >
+                                        {(item.submenu === "product" ? productSubmenu : rndSubmenu).map((subItem, i) => (
+                                            <MenuItem
+                                                key={i}
+                                                sx={{ fontSize: "11px", color: "#C8C8C8", "&:hover": { color: "#FFF" } }}
+                                                onClick={() => {
+                                                    window.location.href = subItem.path ? subItem.path : "#";
+                                                    handleMenuClose();
+                                                }}
+                                            >
+                                                {subItem.label || subItem}
+                                            </MenuItem>
+                                        ))}
+                                    </Menu>
+                                )}
+
+                            </Box>
+                        ))}
+                        <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+                            <Select
+                                value={selectedLanguage}
+                                onChange={(e) => setSelectedLanguage(e.target.value)}
+                                sx={{
+                                    fontSize: "14px",
+                                    padding: "6px 12px",
+                                    minWidth: "150px",
+
+                                    height: "40px",
+                                    backgroundColor: "#fff",
+                                    color: "#000",
+                                }}
+                            >
+                                {languages.map((lang, index) => (
+                                    <MenuItem key={index} value={lang.value}>
+                                        {lang.label}
+                                    </MenuItem>
+                                ))}
+                            </Select>
+
+                            <IconButton sx={{ padding: "10px", borderRadius: "8px", color: "#027ab1" }}>
+                                <SearchIcon fontSize="small" />
+                            </IconButton>
+                        </Box>
+                    </Box>
+
+                    {/* Mobile Menu Button */}
+                    <Box sx={{ display: { xs: "flex", md: "none" } }}>
+                        <IconButton onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+                            <MenuIcon fontSize="medium" />
+                        </IconButton>
+                        <IconButton sx={{ padding: "10px 20px", borderRadius: "8px", color: "#027ab1" }}>
+                            <SearchIcon fontSize="small" />
+                        </IconButton>
+                    </Box>
+                </Toolbar>
+            </AppBar>
+
+            {/* Mobile Collapsible Menu */}
+            <Collapse in={mobileMenuOpen} timeout="auto" unmountOnExit>
+                <List sx={{ backgroundColor: "#373737", color: "white" }}>
+                    {/* Menu Items */}
+                    {menuItems.map((item, index) => (
+                        <Box key={index}>
+                            <ListItem
+                                button
+                                onClick={() =>
+                                    item.submenu
+                                        ? setOpenSubmenu(openSubmenu === item.submenu ? null : item.submenu)
+                                        : (window.location.href = item.link || "#")
+                                }
+                            >
+                                <ListItemText
+                                    primary={item.label}
+                                    primaryTypographyProps={{
+                                        fontSize: "14px",
+                                        letterSpacing: "1px",
+                                        fontWeight: 600,
+                                        color: "white",
+                                        borderBottom: "1px solid #fff"
+                                    }}
+                                />
+                                {item.submenu && (openSubmenu === item.submenu ? <ExpandLessIcon /> : <ExpandMoreIcon />)}
+                            </ListItem>
+                            {item.submenu && (
+                                <Collapse in={openSubmenu === item.submenu} timeout="auto" unmountOnExit>
+                                    <List sx={{ paddingLeft: 4, paddingRight: 4 }}>
+                                        {(item.submenu === "product" ? productSubmenu : rndSubmenu).map((subItem, i) => (
+                                            <ListItem
+                                                key={i}
+                                                button
+                                                onClick={() => window.location.href = subItem.path ? subItem.path : "#"}
+                                                sx={{
+                                                    borderBottom: "1px solid rgba(255, 255, 255, 0.2)", // Light border
+                                                    fontSize: "11px",
+                                                    px: 2, // Padding on both left & right
+                                                    "&:last-child": { borderBottom: "none" } // Remove border from last item
+                                                }}
+                                            >
+                                                <ListItemText
+                                                    primary={subItem.label || subItem}
+                                                    sx={{ fontSize: "11px", color: "#C8C8C8" }}
+                                                />
+                                            </ListItem>
+                                        ))}
+                                    </List>
+                                </Collapse>
+                            )}
+                        </Box>
+                    ))}
+                </List>
+
+                {/* Language Dropdown Below Contact */}
+                <Box sx={{ width: "100%", backgroundColor: "#373737" }}>
+                    <Select
+                        value={selectedLanguage}
+                        onChange={(e) => setSelectedLanguage(e.target.value)}
+                        fullWidth
+                        sx={{
+                            fontSize: "14px",
+                            backgroundColor: "white", // White background
+                            color: "black",
+                            "& .MuiSelect-icon": {
+                                color: "black", // Dropdown arrow color
+                            },
+                        }}
+                    >
+                        {languages.map((lang, index) => (
+                            <MenuItem
+                                key={index}
+                                value={lang.value}
+                                sx={{
+                                    fontSize: "14px",
+                                    fontWeight: 600,
+                                    backgroundColor: "white", // Keep white background
+                                    color: "black",
+                                    "&:hover": {
+                                        backgroundColor: "#f0f0f0",
+                                    },
+                                }}
+                            >
+                                {lang.label}
+                            </MenuItem>
+                        ))}
+                    </Select>
+                </Box>
+            </Collapse>
+
+
+
+
+        </>
+    );
+}
+
+export default Navigation;
