@@ -80,9 +80,9 @@ function Navigation() {
 
     return (
         <>
-            <AppBar position="static" sx={{ backgroundColor: "white", color: "black", boxShadow: "none", padding: "5px 20px" }}>
+            <AppBar  position="fixed" sx={{ backgroundColor: "white", color: "black", boxShadow: "none", padding: "5px 20px" , zIndex: 999}}>
                 <Toolbar sx={{ display: "flex", justifyContent: { md: "space-around", xs: "space-between" } }}>
-                    <Box>
+                    <Box onClick={() => {navigate("/")}}>
                         <img src={logo} alt="logo" style={{ height: "60px", objectFit: "cover" }} />
                     </Box>
 
