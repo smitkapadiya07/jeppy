@@ -12,6 +12,8 @@ function Header({title}) {
                 <Grid container alignItems="center">
                     <Grid item xs={6}>
                         <Box
+                    <Grid item xs={12} sm={6}>
+                        <Box className={"OpenSans"}
                              sx={{
                                  fontWeight: "600",
                                  textTransform: "uppercase",
@@ -24,8 +26,9 @@ function Header({title}) {
                         </Box>
                     </Grid>
 
-                    <Grid item xs={4} sx={{textAlign: "right"}}>
+                    <Grid item xs={12} sm={4} sx={{paddingTop: {xs:"10px" , sm:"0"} , textAlign: {sm:"center" , xs:"unset"}}}>
                         <Box
+                            className={"OpenSans"}
                             sx={{
                                 fontSize: "14px",
                                 textTransform: "uppercase",
