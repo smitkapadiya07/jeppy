@@ -17,6 +17,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import logo from "../../assets/global/Jeppy_Logo-1_121x68.jpg";
+import {useNavigate} from "react-router-dom";
 
 function Navigation() {
     const menuItems = [
@@ -50,6 +51,8 @@ function Navigation() {
         { label: "Español", value: "spanish" },
         { label: "Français", value: "french" },
     ];
+
+    const navigate = useNavigate()
     const [selectedLanguage, setSelectedLanguage] = useState(languages[0]?.value || "english");
 
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -83,7 +86,6 @@ function Navigation() {
                         <img src={logo} alt="logo" style={{ height: "60px", objectFit: "cover" }} />
                     </Box>
 
-                    {/* Desktop Menu */}
                     <Box sx={{ display: { xs: "none", md: "flex" }, gap: 4, alignItems: "center" }}>
                         {menuItems.map((item, index) => (
                             <Box key={index} onMouseLeave={handleMenuClose}>
@@ -162,9 +164,8 @@ function Navigation() {
                         </Box>
                     </Box>
 
-                    {/* Mobile Menu Button */}
                     <Box sx={{ display: { xs: "flex", md: "none" } }}>
-                        <IconButton onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+                        <IconButton onClick={() => setMobileMenuOpen(!mobileMenuOpen)} sx={{backgroundColor:"#373737" , color: "#FFF" , borderRadius:"0"}}>
                             <MenuIcon fontSize="medium" />
                         </IconButton>
                         <IconButton sx={{ padding: "10px 20px", borderRadius: "8px", color: "#027ab1" }}>
@@ -174,14 +175,13 @@ function Navigation() {
                 </Toolbar>
             </AppBar>
 
-            {/* Mobile Collapsible Menu */}
-            <Collapse in={mobileMenuOpen} timeout="auto" unmountOnExit>
+            <Collapse in={mobileMenuOpen} timeout="auto" unmountOnExit sx={{display:{xs:"flex" , md:"none"}}}>
                 <List sx={{ backgroundColor: "#373737", color: "white" }}>
-                    {/* Menu Items */}
                     {menuItems.map((item, index) => (
                         <Box key={index}>
                             <ListItem
                                 button
+                                sx={{p:0}}
                                 onClick={() =>
                                     item.submenu
                                         ? setOpenSubmenu(openSubmenu === item.submenu ? null : item.submenu)
@@ -195,40 +195,39 @@ function Navigation() {
                                         letterSpacing: "1px",
                                         fontWeight: 600,
                                         color: "white",
-                                        borderBottom: "1px solid #fff"
+                                        padding: "8px 15px",
+                                        borderBottom: "1px solid rgba(255, 255, 255, 0.2)"
                                     }}
                                 />
                                 {item.submenu && (openSubmenu === item.submenu ? <ExpandLessIcon /> : <ExpandMoreIcon />)}
                             </ListItem>
                             {item.submenu && (
                                 <Collapse in={openSubmenu === item.submenu} timeout="auto" unmountOnExit>
-                                    <List sx={{ paddingLeft: 4, paddingRight: 4 }}>
+                                    <List sx={{ paddingLeft: 4, paddingRight: 4 }}> {/* Reduce padding */}
                                         {(item.submenu === "product" ? productSubmenu : rndSubmenu).map((subItem, i) => (
                                             <ListItem
                                                 key={i}
                                                 button
-                                                onClick={() => window.location.href = subItem.path ? subItem.path : "#"}
+                                                navigate={() => {navigate(item.submenu === "product" ? "/product/:name" : "/rnd/:name")}}
                                                 sx={{
-                                                    borderBottom: "1px solid rgba(255, 255, 255, 0.2)", // Light border
-                                                    fontSize: "11px",
-                                                    px: 2, // Padding on both left & right
-                                                    "&:last-child": { borderBottom: "none" } // Remove border from last item
+                                                    borderBottom: "0.5px solid rgba(255, 255, 255, 0.2)",
+                                                    p: "9px 0",
+                                                    "&:last-child": { borderBottom: "none" }
                                                 }}
                                             >
-                                                <ListItemText
-                                                    primary={subItem.label || subItem}
-                                                    sx={{ fontSize: "11px", color: "#C8C8C8" }}
-                                                />
+                                                <Typography variant="body2" sx={{ fontSize: "11px", color: "#C8C8C8" }}>
+                                                    {subItem.label || subItem}
+                                                </Typography>
                                             </ListItem>
                                         ))}
                                     </List>
                                 </Collapse>
+
                             )}
                         </Box>
                     ))}
                 </List>
 
-                {/* Language Dropdown Below Contact */}
                 <Box sx={{ width: "100%", backgroundColor: "#373737" }}>
                     <Select
                         value={selectedLanguage}
@@ -236,10 +235,10 @@ function Navigation() {
                         fullWidth
                         sx={{
                             fontSize: "14px",
-                            backgroundColor: "white", // White background
+                            backgroundColor: "white",
                             color: "black",
                             "& .MuiSelect-icon": {
-                                color: "black", // Dropdown arrow color
+                                color: "black",
                             },
                         }}
                     >
@@ -250,7 +249,7 @@ function Navigation() {
                                 sx={{
                                     fontSize: "14px",
                                     fontWeight: 600,
-                                    backgroundColor: "white", // Keep white background
+                                    backgroundColor: "white",
                                     color: "black",
                                     "&:hover": {
                                         backgroundColor: "#f0f0f0",
