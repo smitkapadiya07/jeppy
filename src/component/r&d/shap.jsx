@@ -29,7 +29,7 @@ const shapeData = [
 
 function Shape() {
     return (
-        <Box className={"OpenSans"} sx={{
+        <Box sx={{
             backgroundColor: '#FFFFF9',
             padding: '100px 0px',
         }}>

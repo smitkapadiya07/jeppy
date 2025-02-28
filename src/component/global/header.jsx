@@ -11,7 +11,7 @@ function Header({title}) {
             <Container maxWidth={"lg"}>
                 <Grid container alignItems="center">
                     <Grid item xs={6}>
-                        <Box className={"OpenSans"}
+                        <Box
                              sx={{
                                  fontWeight: "600",
                                  textTransform: "uppercase",
@@ -26,7 +26,6 @@ function Header({title}) {
 
                     <Grid item xs={4} sx={{textAlign: "right"}}>
                         <Box
-                            className={"OpenSans"}
                             sx={{
                                 fontSize: "14px",
                                 textTransform: "uppercase",

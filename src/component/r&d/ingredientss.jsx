@@ -17,7 +17,7 @@ function Ingredients() {
            padding: '100px 0px',
        }}>
        <Container maxWidth={"lg"}>
-           <Box className={"OpenSans"} sx={{ padding: 4 }}>
+           <Box sx={{ padding: 4 }}>
                {ingredientsData.map((text, index) => (
                    <Typography key={index} variant="body1" sx={{ marginBottom: 3 , fontSize: "13px" }}>
                        {text}
