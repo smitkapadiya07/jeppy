@@ -1,10 +1,16 @@
 import React from 'react';
 import ProductsCategories from "../component/product/productsCategories.jsx";
+import Header from "../component/global/header.jsx";
+import { useParams } from "react-router-dom";
 
-function Product(props) {
+function Product() {
+    const { name } = useParams();
+    const formattedName = name.replaceAll('-', ' '); // Replace dashes with spaces
+
     return (
         <>
-            <ProductsCategories/>
+            <Header title={formattedName} />
+            <ProductsCategories />
         </>
     );
 }

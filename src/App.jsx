@@ -1,29 +1,25 @@
 import './App.css'
-import Home from "./pages/HomePage/home.jsx";
-import Contacts from "./pages/contacts/contacts.jsx";
-import Profile from "./pages/Profile/profile.jsx";
+import Profile from "./pages/profile.jsx";
+import Contacts from "./pages/contacts.jsx";
 import Navigation from "./component/global/navigation.jsx";
+import Home from "./pages/home.jsx";
 import Footer from "./component/global/footer.jsx";
 import Product from "./pages/product.jsx";
-import Header from "./component/global/header.jsx";
-import Shapes from "./pages/rnd/shapes.jsx";
-import Ingredients from "./pages/rnd/ingredients.jsx";
-import Methodss from "./pages/rnd/methodss.jsx";
+import {Route, Routes} from "react-router-dom";
 
 function App() {
 
     return (
         <>
             <Navigation/>
-            <Home/>
-            <Contacts/>
-            <Header/>
-            <Product/>
-            {/*<Footer/>*/}
-            {/*<Profile/>*/}
-            {/*<Shapes/>*/}
-            <Ingredients/>
-            <Methodss/>
+            <Routes>
+                <Route path="/" element={<Home/>}/>
+                <Route path="/contact" element={<Contacts/>}/>
+                <Route path="/profile" element={<Profile/>}/>
+                <Route path="/product/:name" element={<Product/>}/>
+                <Route path="/rnd/:name" element={<Product/>}/>
+            </Routes>
+            <Footer/>
         </>
     )
 }
