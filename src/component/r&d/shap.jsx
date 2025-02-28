@@ -29,8 +29,9 @@ const shapeData = [
 
 function Shape() {
     return (
-        <Box sx={{
+        <Box className={"OpenSans"} sx={{
             backgroundColor: '#FFFFF9',
+            padding: '100px 0px',
         }}>
             <Container maxWidth={"lg"}>
                 <Box sx={{ padding: 4 }}>
@@ -59,6 +60,7 @@ function Shape() {
                                     marginLeft: '40px',
                                     paddingTop: '15px',
                                     paddingBottom: '10px',
+                                    lineHeight: '25px',
                                 }}>
                                     <ul>
                                         {shape.items.map((item, idx) => (
