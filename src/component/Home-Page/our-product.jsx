@@ -85,8 +85,8 @@ function OurProduct() {
                                        maxWidth: "300px",
                                        // aspectRatio: "1 / 1",
                                        background: "#A4A4A3",
-                                       boxShadow: "0px 4px 10px rgba(255,255,255,1)", // Apply shadow only to image
-                                       // borderRadius: "8px",
+                                       cursor: "pointer",
+                                       boxShadow: " rgb(166, 166, 166) 20px -60px 60px 30px inset, rgba(0, 0, 0, 0.3) 100px 10px 100px 10px inset",
                                        overflow: "hidden",
                                        padding: "10px",
                                        display: "flex",
