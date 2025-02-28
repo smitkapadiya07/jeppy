@@ -14,6 +14,7 @@ function Ingredients() {
     return (
        <Box sx={{
            backgroundColor: '#FFFFF9',
+           padding: '100px 0px',
        }}>
        <Container maxWidth={"lg"}>
            <Box className={"OpenSans"} sx={{ padding: 4 }}>
