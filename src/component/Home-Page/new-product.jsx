@@ -63,10 +63,10 @@ const NewProduct = () => {
 
     return (
         <>
-            <Box sx={{width: "100%", textAlign: "center", marginBottom: 4, backgroundColor: "#004c78"}}>
+            <Box sx={{width: "100%", textAlign: "center", backgroundColor: "#004c78"}}>
                 <Box className={"newProduct"} sx={{
                     padding: "80px 0px",
-                    margin: "50px 0px",
+                    margin: "50px 0px 0 0",
                 }}>
                     <Box sx={{display: {xs: "unset", md: "flex"}}}>
                         <Box sx={{width: {md: "50%", xs: "100%"}}}>
@@ -83,7 +83,18 @@ const NewProduct = () => {
                             >
                                 Iconic <br/> Products
                             </Typography>
-                            <Box sx={{overflow: "hidden", position: "relative"}}>
+                            <Box sx={{overflow: "hidden" , display: "flex" , alignItems: "center" }}>
+                                <Button
+                                    className="swiper-button-prev"
+                                    sx={{
+                                        color: '#005EA0',
+                                        borderRadius: '50%',
+                                        height: '65px',
+                                        width: '60px',
+                                    }}
+                                >
+                                    <KeyboardArrowLeftIcon/>
+                                </Button>
                                 <Swiper
                                     navigation={{
                                         nextEl: ".swiper-button-next",
@@ -100,46 +111,23 @@ const NewProduct = () => {
                                 >
                                     {productsData.map((item, index) => (
                                         <SwiperSlide key={index}>
-                                            <Box sx={{padding: "0 20px"}}>
+                                            <Box sx={{padding: "0 10px"}}>
                                                 <img src={item.iconic} alt="Img1" style={{width: "100%"}}/>
                                             </Box>
                                         </SwiperSlide>
                                     ))}
                                 </Swiper>
-                            <Button
-                                className="swiper-button-prev"
-                                sx={{
-                                    color: '#005EA0',
-                                    position: 'absolute',
-                                    top: {xs: '80%', lg: '0'},
-                                    left: {xs: 0, lg: "92%"},
-                                    borderRadius: '50%',
-                                    height: '75px',
-                                    width: '75px',
-                                    p: 2.5,
-                                    display: "block",
-                                    transition: '0.5s',
-                                }}
-                            >
-                                <KeyboardArrowRightIcon/>
-                            </Button>
-                            <Button
-                                className="swiper-button-next"
-                                sx={{
-                                    color: '#005EA0',
-                                    position: 'absolute',
-                                    top: {xs: '80%', lg: '0%'},
-                                    left: {xs: 50, lg: "0"},
-                                    height: '75px',
-                                    width: '75px',
-                                    borderRadius: '50%',
-                                    p: 2.5,
-                                    display: "block",
-                                    transition: '0.5s',
-                                }}
-                            >
-                                <KeyboardArrowLeftIcon/>
-                            </Button>
+                                <Button
+                                    className="swiper-button-next"
+                                    sx={{
+                                        color: '#005EA0',
+                                        borderRadius: '50%',
+                                        height: '65px',
+                                        width: '60px',
+                                    }}
+                                >
+                                    <KeyboardArrowRightIcon/>
+                                </Button>
                             </Box>
                         </Box>
                         <Box sx={{width: {md: "50%", xs: "100%"}}}>
@@ -156,13 +144,20 @@ const NewProduct = () => {
                             >
                                 What's New <br/> Products
                             </Typography>
-                            <Box sx={{overflow: "hidden", position: "relative"}}>
+                            <Box sx={{overflow: "hidden", display: "flex", alignItems: "center" }}>
+                                <Button
+                                    className="swiper"
+                                    sx={{
+                                        color: '#005EA0',
+                                        borderRadius: '50%',
+                                    }}
+                                    onClick={handlePrev1}
+                                >
+                                    <KeyboardArrowLeftIcon sx={{ fontSize: "50px" }} />
+                                </Button>
+
                                 <Swiper
                                     ref={swiperRef}
-                                    // navigation={{
-                                    //     nextEl: ".swiper",
-                                    //     prevEl: ".swiper",
-                                    // }}
                                     modules={[Navigation]}
                                     breakpoints={{
                                         320: {slidesPerView: 1},
@@ -174,7 +169,7 @@ const NewProduct = () => {
                                     sx={{display:"flex" , justifyContent:"center"}}>
                                     {newData.map((item, index) => (
                                         <SwiperSlide key={index}>
-                                            <Box sx={{padding: "0 20px"}}>
+                                            <Box sx={{padding: "0 10px"}}>
                                                 <img src={item.new} alt="Img1" style={{width: "100%"}}/>
                                             </Box>
                                         </SwiperSlide>
@@ -184,47 +179,17 @@ const NewProduct = () => {
                                     className="swiper"
                                     sx={{
                                         color: '#005EA0',
-                                        position: 'absolute',
-                                        top: {xs: '80%', lg: '0'},
-                                        left: {xs: 0, lg: "80%"},
                                         borderRadius: '50%',
-                                        // height: '75px',
-                                        // width: '75px',
-                                        p: 2.5,
-                                        display: "block",
-                                        transition: '0.5s',
-                                    }}
-                                    onClick={handlePrev1}
-                                >
-                                    <KeyboardArrowRightIcon fontSize={"large"}/>
-                                </Button>
-                                <Button
-                                    className="swiper"
-                                    sx={{
-                                        color: "#005EA0",
-                                        position: 'absolute',
-                                        top: {xs: '80%', lg: '0%'},
-                                        left: {xs: 50, lg: "0"},
-                                        // height: '75px',
-                                        // width: '75px',
-                                        borderRadius: '50%',
-                                        p: 2.5,
-                                        display: "block",
-                                        transition: '0.5s',
                                     }}
                                     onClick={handleNext1}
                                 >
-                                    <KeyboardArrowLeftIcon fontSize={"large"}/>
+                                    <KeyboardArrowRightIcon sx={{fontSize:"50px"}} />
                                 </Button>
                             </Box>
                         </Box>
                     </Box>
                 </Box>
             </Box>
-            {/*<Box sx={{ backgroundColor: "#004c78", padding: 4, color: "white" }}>*/}
-            {/*    <ProductSlider title="ICONIC PRODUCTS" images={productsData.iconic} />*/}
-            {/*    <ProductSlider title="WHAT'S NEW PRODUCTS" images={productsData.new} />*/}
-            {/*</Box>*/}
         </>
     );
 };

@@ -17,6 +17,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import logo from "../../assets/global/Jeppy_Logo-1_121x68.jpg";
+import {useNavigate} from "react-router-dom";
 
 function Navigation() {
     const menuItems = [
@@ -50,6 +51,8 @@ function Navigation() {
         { label: "Español", value: "spanish" },
         { label: "Français", value: "french" },
     ];
+
+    const navigate = useNavigate()
     const [selectedLanguage, setSelectedLanguage] = useState(languages[0]?.value || "english");
 
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -205,7 +208,7 @@ function Navigation() {
                                             <ListItem
                                                 key={i}
                                                 button
-                                                onClick={() => window.location.href = subItem.path ? subItem.path : "#"}
+                                                navigate={() => {navigate(item.submenu === "product" ? "/product/:name" : "/rnd/:name")}}
                                                 sx={{
                                                     borderBottom: "0.5px solid rgba(255, 255, 255, 0.2)",
                                                     p: "9px 0",

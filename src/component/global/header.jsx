@@ -1,7 +1,11 @@
 import React from "react";
 import {Box, Container, Grid, Typography} from "@mui/material";
+import {useNavigate} from "react-router-dom";
 
-function Header() {
+function Header({title}) {
+
+    const navigate = useNavigate();
+
     return (
         <Box sx={{backgroundColor: "#004c7e", padding: "40px 0", color: "white"}}>
             <Container maxWidth={"lg"}>
@@ -16,7 +20,7 @@ function Header() {
                                  lineHeight: "23px",
                                  letterSpacing: "4px",
                              }}>
-                            Profile
+                            {title}
                         </Box>
                     </Grid>
 
@@ -29,14 +33,17 @@ function Header() {
                                 fontWeight: "400",
                                 letterSpacing: "2px",
                                 lineHeight: "23px",
-                            }}>Home
+                                cursor: "pointer",
+                            }}
+                            onClick={() => navigate("/")}
+                        >Home
                             <span
                                 style={{
                                     padding: "0 10px"
                                 }}
                             >|
                             </span>
-                            Profile
+                            {title}
                         </Box>
                     </Grid>
                 </Grid>
