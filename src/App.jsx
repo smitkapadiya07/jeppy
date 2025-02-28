@@ -16,6 +16,7 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import PhoneEnabledIcon from '@mui/icons-material/PhoneEnabled';
 import EmailIcon from '@mui/icons-material/Email';
 import { keyframes } from '@mui/system';
+import ProductSingle from "./pages/productSingle.jsx";
 
 function App() {
     const actions = [
@@ -37,9 +38,10 @@ function App() {
                 <Route path="/contact" element={<Contacts/>}/>
                 <Route path="/profile" element={<Profile/>}/>
                 <Route path="/product/:name" element={<Product/>}/>
-                <Route path="/rnd/shape" element={<Shapes/>}/>
-                <Route path="/rnd/ingredients" element={<Ingredients/>}/>
-                <Route path="/rnd/methode" element={<Methodss/>}/>
+                <Route path="/rnd/shape" element={<Shapes />}/>
+                <Route path="/rnd/ingredients" element={<Ingredients />}/>
+                <Route path="/rnd/methode" element={<Methodss />}/>
+                <Route path="/products/:productName" element={<ProductSingle/>}/>
             </Routes>
             <SpeedDial
                 ariaLabel="SpeedDial Ripple Effect"

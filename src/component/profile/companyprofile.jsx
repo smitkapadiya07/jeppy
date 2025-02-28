@@ -92,7 +92,6 @@ const CompanyProfile = () => {
                     <Grid item xs={12} md={6}>
                         {companyDescription.map((paragraph, index) => (
                             <Box
-                                className={"OpenSans"}
                                 key={index}
                                 sx={{
                                     mb: {xs: 2, md: 3, lg: 2},

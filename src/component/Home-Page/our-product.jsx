@@ -47,7 +47,6 @@ function OurProduct() {
     ]
 
     return (
-       <Container maxWidth={'xl'}>
            <Box>
                <Box sx={{
                    display: 'flex',
@@ -62,7 +61,7 @@ function OurProduct() {
                }}>
                    OUR PRODUCT RANGE
                </Box>
-               <Grid container={"xl"} spacing={5}>
+               <Grid container={"xl"} spacing={6}>
                    {data.map((item, index) => (
                        <Grid item xs={12} md={3}>
                            <Box
@@ -81,14 +80,12 @@ function OurProduct() {
                                {/* Image Box */}
                                <Box
                                    sx={{
-                                       width: "100%",
-                                       maxWidth: "300px",
-                                       // aspectRatio: "1 / 1",
+                                       width: "90%",
                                        background: "#A4A4A3",
                                        cursor: "pointer",
                                        boxShadow: " rgb(166, 166, 166) 20px -60px 60px 30px inset, rgba(0, 0, 0, 0.3) 100px 10px 100px 10px inset",
                                        overflow: "hidden",
-                                       padding: "10px",
+                                       padding: "5px",
                                        display: "flex",
                                        alignItems: "center",
                                        justifyContent: "center"
@@ -119,7 +116,6 @@ function OurProduct() {
                    ))}
                </Grid>
            </Box>
-       </Container>
     );
 }
 
