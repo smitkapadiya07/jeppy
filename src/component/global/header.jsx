@@ -10,8 +10,6 @@ function Header({title}) {
         <Box sx={{backgroundColor: "#004c7e", padding: "40px 0", color: "white"}}>
             <Container maxWidth={"lg"}>
                 <Grid container alignItems="center">
-                    <Grid item xs={6}>
-                        <Box
                     <Grid item xs={12} sm={6}>
                         <Box className={"OpenSans"}
                              sx={{

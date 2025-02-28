@@ -17,6 +17,7 @@ import PhoneEnabledIcon from '@mui/icons-material/PhoneEnabled';
 import EmailIcon from '@mui/icons-material/Email';
 import { keyframes } from '@mui/system';
 import ProductSingle from "./pages/productSingle.jsx";
+import Certificates from "./pages/certificates.jsx";
 
 function App() {
     const actions = [
@@ -42,6 +43,7 @@ function App() {
                 <Route path="/rnd/ingredients" element={<Ingredients />}/>
                 <Route path="/rnd/methode" element={<Methodss />}/>
                 <Route path="/products/:productName" element={<ProductSingle/>}/>
+                <Route path="/certificate" element={<Certificates/>}/>
             </Routes>
             <SpeedDial
                 ariaLabel="SpeedDial Ripple Effect"

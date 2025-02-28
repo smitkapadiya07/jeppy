@@ -3,7 +3,7 @@ import { Box, Container, Grid, Typography, Link } from "@mui/material";
 import {useNavigate} from "react-router-dom";
 
 const links = [
-    { name: "Certificates", href: "#" },
+    { name: "Certificates", href: "/certificate" },
     { name: "Terms & Conditions", href: "#" },
     { name: "Privacy Policy", href: "#" }
 ];
