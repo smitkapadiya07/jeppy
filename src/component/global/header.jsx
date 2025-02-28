@@ -10,7 +10,7 @@ function Header({title}) {
         <Box sx={{backgroundColor: "#004c7e", padding: "40px 0", color: "white"}}>
             <Container maxWidth={"lg"}>
                 <Grid container alignItems="center">
-                    <Grid item xs={6}>
+                    <Grid item xs={12} sm={6}>
                         <Box className={"OpenSans"}
                              sx={{
                                  fontWeight: "600",
@@ -24,7 +24,7 @@ function Header({title}) {
                         </Box>
                     </Grid>
 
-                    <Grid item xs={4} sx={{textAlign: "right"}}>
+                    <Grid item xs={12} sm={4} sx={{paddingTop: {xs:"10px" , sm:"0"} , textAlign: {sm:"center" , xs:"unset"}}}>
                         <Box
                             className={"OpenSans"}
                             sx={{

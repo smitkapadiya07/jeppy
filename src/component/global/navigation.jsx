@@ -29,21 +29,21 @@ function Navigation() {
     ];
 
     const productSubmenu = [
-        { label: "2D PAPAD SNACKS", path: "/product/2d-papad-snacks" },
-        { label: "3D PAPAD SNACKS", path: "/product/3d-papad-snacks" },
-        { label: "GLUTEN FREE PAPAD SNACKS", path: "/product/gluten-free-papad-snacks" },
-        { label: "MICRO PAPAD PELLETS", path: "/product/micro-papad-pellets" },
-        { label: "POTATO PAPAD SNACKS", path: "/product/potato-papad-snacks" },
-        { label: "PROTEIN PAPAD SNACKS", path: "/product/protein-papad-snacks" },
-        { label: "SHEETED PAPAD SNACKS", path: "/product/sheeted-papad-snacks" },
-        { label: "VEGGI SNACKS PAPAD SNACKS", path: "/product/veggi-snacks-papad-snacks" }
+        { label: "2D PAPAD SNACKS", path: "2d-papad-snacks" },
+        { label: "3D PAPAD SNACKS", path: "3d-papad-snacks" },
+        { label: "GLUTEN FREE PAPAD SNACKS", path: "gluten-free-papad-snacks" },
+        { label: "MICRO PAPAD PELLETS", path: "micro-papad-pellets" },
+        { label: "POTATO PAPAD SNACKS", path: "potato-papad-snacks" },
+        { label: "PROTEIN PAPAD SNACKS", path: "protein-papad-snacks" },
+        { label: "SHEETED PAPAD SNACKS", path: "sheeted-papad-snacks" },
+        { label: "VEGGI SNACKS PAPAD SNACKS", path: "veggi-snacks-papad-snacks" }
     ];
 
 
     const rndSubmenu = [
-        { label: "SHAPE", path: "/rnd/shape" },
-        { label: "INGREDIENTS", path: "/rnd/ingredients" },
-        { label: "METHODS", path: "/rnd/methode" },
+        { label: "SHAPE", path: "shape" },
+        { label: "INGREDIENTS", path: "ingredients" },
+        { label: "METHODS", path: "methode" },
     ];
 
     const languages = [
@@ -124,9 +124,13 @@ function Navigation() {
                                             <MenuItem
                                                 key={i}
                                                 sx={{ fontSize: "11px", color: "#C8C8C8", "&:hover": { color: "#FFF" } }}
+                                                // onClick={() => {
+                                                //     window.location.href = subItem.path ? subItem.path : "#";
+                                                //     handleMenuClose();
+                                                // }}
                                                 onClick={() => {
-                                                    window.location.href = subItem.path ? subItem.path : "#";
-                                                    handleMenuClose();
+                                                    navigate(item.submenu === "product" ? `/product/${subItem.path}` : `/rnd/${subItem.path}`)
+                                                    setOpenSubmenu(null)
                                                 }}
                                             >
                                                 {subItem.label || subItem}
@@ -165,7 +169,7 @@ function Navigation() {
                     </Box>
 
                     <Box sx={{ display: { xs: "flex", md: "none" } }}>
-                        <IconButton onClick={() => setMobileMenuOpen(!mobileMenuOpen)} sx={{backgroundColor:"#373737" , color: "#FFF" , borderRadius:"0"}}>
+                        <IconButton onClick={() => setMobileMenuOpen(!mobileMenuOpen)} sx={{backgroundColor:"#373737" , color: "#FFF" , borderRadius:"0" , "&:hover": { color: "#FFF" , backgroundColor: "#373737" } }}>
                             <MenuIcon fontSize="medium" />
                         </IconButton>
                         <IconButton sx={{ padding: "10px 20px", borderRadius: "8px", color: "#027ab1" }}>
@@ -207,22 +211,26 @@ function Navigation() {
                                         {(item.submenu === "product" ? productSubmenu : rndSubmenu).map((subItem, i) => (
                                             <ListItem
                                                 key={i}
-                                                button
-                                                navigate={() => {navigate(item.submenu === "product" ? "/product/:name" : "/rnd/:name")}}
                                                 sx={{
                                                     borderBottom: "0.5px solid rgba(255, 255, 255, 0.2)",
                                                     p: "9px 0",
-                                                    "&:last-child": { borderBottom: "none" }
+                                                    "&:last-child": { borderBottom: "none" },
+                                                    cursor: "pointer"
+                                                }}
+                                                onClick={() => {
+                                                    navigate(item.submenu === "product" ? `/product/${subItem.path}` : `/rnd/${subItem.path}`)
+                                                    setOpenSubmenu(null)
+                                                    setMobileMenuOpen(false)
                                                 }}
                                             >
                                                 <Typography variant="body2" sx={{ fontSize: "11px", color: "#C8C8C8" }}>
                                                     {subItem.label || subItem}
                                                 </Typography>
                                             </ListItem>
+
                                         ))}
                                     </List>
                                 </Collapse>
-
                             )}
                         </Box>
                     ))}
