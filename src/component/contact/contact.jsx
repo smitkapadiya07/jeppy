@@ -1,20 +1,30 @@
-import React from "react";
-import {useForm} from "react-hook-form";
-import {Box, Button, Container, TextField, Typography} from "@mui/material";
+import React, {useState} from "react";
+import { useForm } from "react-hook-form";
+import { Box, Button, Container, TextField, Typography } from "@mui/material";
 
 function Contact() {
+
+    const [showMap, setShowMap] = useState(false);
+
+    const handleRedirect = () => {
+        window.open(
+            "https://www.google.com/maps/place/Jeppy/@22.2670016,70.797555,13z/",
+            "_blank"
+        );
+    };
+
     const {
         register,
         handleSubmit,
-        formState: {errors},
-    } = useForm();
+        formState: { errors },
+    } = useForm({ mode: "onBlur" });
 
     const onSubmit = (data) => {
         console.log("Form Data:", data);
     };
 
     return (
-        <Box sx={{padding:"60px 0px"}}>
+        <Box sx={{ padding: "60px 0px" }}>
             <Container maxWidth="sm">
                 {/* Header Section */}
                 <Box
@@ -33,7 +43,6 @@ function Contact() {
                             textTransform: "uppercase",
                             letterSpacing: "2px",
                             transition: ".3s",
-
                         }}
                     >
                         Get In Touch
@@ -53,28 +62,38 @@ function Contact() {
                                 backgroundColor: "white",
                             },
                         }}
+                        onClick={handleRedirect} // Opens Google Maps in new tab
                     >
                         FIND US ON GOOGLE MAP
                     </Button>
+
+                    {showMap && (
+                        <Box mt={2} display="flex" justifyContent="center">
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d59076.64014482902!2d70.797555!3d22.2670016!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3959b584d2aba6c3%3A0xfa831224b3c5ed4a!2sJeppy!5e0!3m2!1sen!2sin!4v1740738443251!5m2!1sen!2sin"
+                                width="600" height="450" style="border:0;" allowFullScreen="" loading="lazy"
+                                referrerPolicy="no-referrer-when-downgrade"></iframe>
+                        </Box>
+                    )}
                 </Box>
 
                 {/* Form Section */}
                 <Box component="form" onSubmit={handleSubmit(onSubmit)}>
                     {[
-                        {name: "companyName", label: "Company Name"},
-                        {name: "contactPerson", label: "Contact Person Name"},
-                        {name: "contactNo", label: "Contact No."},
-                        {name: "email", label: "Email ID"},
-                        {name: "query", label: "Query / Remarks"},
+                        { name: "companyName", label: "Company Name" },
+                        { name: "contactPerson", label: "Contact Person Name" },
+                        { name: "contactNo", label: "Contact No." },
+                        { name: "email", label: "Email ID" },
+                        { name: "query", label: "Query / Remarks" },
                     ].map((field, index) => (
                         <TextField
                             key={index}
                             fullWidth
                             variant="standard"
                             label={field.label}
-                            {...register(field.name, {required: true})}
+                            {...register(field.name, { required: `${field.label} is required` })}
                             error={!!errors[field.name]}
-                            helperText={errors[field.name] ? `${field.label} is required` : ""}
+                            helperText={errors[field.name]?.message || ""}
                             sx={{
                                 mb: 2,
                                 width: "100%",
@@ -98,6 +117,7 @@ function Contact() {
 
                     {/* Submit Button */}
                     <Button
+                        type="submit"
                         sx={{
                             backgroundColor: "#02154E",
                             color: "#fff",
@@ -105,7 +125,7 @@ function Contact() {
                             padding: "6px 14px",
                             letterSpacing: "1px",
                             fontWeight: 600,
-                            mt:1,
+                            mt: 1,
                             border: "2px solid transparent",
                             "&:hover": {
                                 color: "#02154E",
@@ -119,8 +139,7 @@ function Contact() {
                 </Box>
             </Container>
         </Box>
-    )
-        ;
+    );
 }
 
 export default Contact;

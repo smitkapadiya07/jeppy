@@ -8,41 +8,52 @@ import Img5 from "/src/assets/HomePage/OurProduct/Img6.png";
 import Img6 from "/src/assets/HomePage/OurProduct/Img7.png";
 import Img7 from "/src/assets/HomePage/OurProduct/Img8.png";
 import Img8 from "/src/assets/HomePage/OurProduct/Img9.png";
+import {useNavigate} from "react-router-dom";
 
 function OurProduct() {
+
+    const navigate = useNavigate();
 
     const data = [
         {
             image: Img1,
-            title : "2D Papad Snacks"
+            title : "2D Papad Snacks",
+            path: "/product/2d-papad-snacks"
         },
         {
             image: Img2,
-            title : "3D Papad Snacks"
+            title : "3D Papad Snacks",
+            path: "/product/3d-papad-snacks"
         },
         {
             image: Img3,
-            title : "Glutein Free Papad Snacks"
+            title : "Glutein Free Papad Snacks",
+            path: "/product/gluten-free-papad-snacks"
         },
         {
             image: Img4,
-            title : "Micro papad pellets"
+            title : "Micro papad pellets",
+            path:"/product/micro-papad-pellets"
         },
         {
             image: Img5,
-            title : "potato papad Snacks"
+            title : "potato papad Snacks",
+            path: "/product/potato-papad-snacks"
         },
         {
             image: Img6,
-            title : "protein papad Snacks"
+            title : "protein papad Snacks",
+            path: "/product/protein-papad-snacks"
         },
         {
             image: Img7,
-            title : "sheeted papad Snacks"
+            title : "sheeted papad Snacks",
+            path: "/product/sheeted-papad-snacks"
         },
         {
             image: Img8,
-            title : "veggi snacks papad Snacks"
+            title : "veggi snacks papad Snacks",
+            path: "/product/veggi-snacks-papad-snacks"
         },
     ]
 
@@ -90,6 +101,7 @@ function OurProduct() {
                                        alignItems: "center",
                                        justifyContent: "center"
                                    }}
+                                   onClick={() => navigate(`${item.path}`)}
                                >
                                    <img
                                        src={item.image}

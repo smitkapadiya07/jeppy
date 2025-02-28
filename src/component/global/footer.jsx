@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Container, Grid, Typography, Link } from "@mui/material";
+import {Box, Container, Grid, Typography, Link} from "@mui/material";
 import {useNavigate} from "react-router-dom";
 
 const links = [
@@ -9,14 +9,14 @@ const links = [
 ];
 
 const productCategories = [
-    { label: "2D PAPAD SNACKS", path: "2d-papad-snacks" },
-    { label: "3D PAPAD SNACKS", path: "3d-papad-snacks" },
-    { label: "GLUTEN FREE PAPAD SNACKS", path: "gluten-free-papad-snacks" },
-    { label: "MICRO PAPAD PELLETS", path: "micro-papad-pellets" },
-    { label: "POTATO PAPAD SNACKS", path: "potato-papad-snacks" },
-    { label: "PROTEIN PAPAD SNACKS", path: "protein-papad-snacks" },
-    { label: "SHEETED PAPAD SNACKS", path: "sheeted-papad-snacks" },
-    { label: "VEGGI SNACKS PAPAD SNACKS", path: "veggi-snacks-papad-snacks" }
+    {label: "2D PAPAD SNACKS", path: "2d-papad-snacks"},
+    {label: "3D PAPAD SNACKS", path: "3d-papad-snacks"},
+    {label: "GLUTEN FREE PAPAD SNACKS", path: "gluten-free-papad-snacks"},
+    {label: "MICRO PAPAD PELLETS", path: "micro-papad-pellets"},
+    {label: "POTATO PAPAD SNACKS", path: "potato-papad-snacks"},
+    {label: "PROTEIN PAPAD SNACKS", path: "protein-papad-snacks"},
+    {label: "SHEETED PAPAD SNACKS", path: "sheeted-papad-snacks"},
+    {label: "VEGGI SNACKS PAPAD SNACKS", path: "veggi-snacks-papad-snacks"}
 ];
 
 const productCounts = [41, 24, 11, 3, 9, 10, 31, 10];
@@ -26,12 +26,12 @@ function Footer() {
     const navigate = useNavigate();
 
     return (
-        <Box sx={{ backgroundColor: "#0082ca", color: "white" }}>
-            <Box sx={{ py: { xs: 2, sm: 4 }, textAlign: { xs: "center", sm: "start" } }}>
+        <Box sx={{backgroundColor: "#0082ca", color: "white"}}>
+            <Box sx={{p: {xs: "50px 15px 25px", md: "80px 15px 45px"}, textAlign: {xs: "center", sm: "start"}}}>
                 <Container maxWidth="lg">
                     <Grid container>
                         <Grid item xs={12} sm={5} md={2}>
-                            <Box sx={{ padding: "0 15px" }}>
+                            <Box sx={{padding: "0 15px"}}>
                                 <Typography sx={{
                                     color: "#e9e9e2",
                                     fontSize: "18px",
@@ -41,20 +41,22 @@ function Footer() {
                                     textTransform: "uppercase",
                                     lineHeight: "1.1"
                                 }}>QUICK LINKS</Typography>
-                                {links.map((link, index) => (
-                                    <Link key={index} href={link.href} display="block" sx={{
-                                        color: "#e9e9e2",
-                                        fontSize: "13px",
-                                        textTransform: "uppercase",
-                                        letterSpacing: "1px",
-                                        textDecoration: "none",
-                                        lineHeight: "23px",
-                                        "&:hover": {
-                                            color: "#ffffff",
-                                            textDecoration: "underline"
-                                        }
-                                    }}>{link.name}</Link>
-                                ))}
+                                <Box sx={{pb:{xs:2 , sm:"unset"},}}>
+                                    {links.map((link, index) => (
+                                        <Link key={index} href={link.href} display="block" sx={{
+                                            color: "#e9e9e2",
+                                            fontSize: "13px",
+                                            textTransform: "uppercase",
+                                            letterSpacing: "1px",
+                                            textDecoration: "none",
+                                            lineHeight: "23px",
+                                            "&:hover": {
+                                                color: "#ffffff",
+                                                textDecoration: "underline"
+                                            }
+                                        }}>{link.name}</Link>
+                                    ))}
+                                </Box>
                             </Box>
                         </Grid>
                         <Grid item xs={12} sm={5} md={2}>
@@ -152,7 +154,7 @@ function Footer() {
                                     lineHeight: "1.1"
                                 }}>PRODUCT CATEGORY</Typography>
                                 {productCategories.map((category, index) => (
-                                    <Box key={index} sx={{display:"flex" , alignItems:"center"}}>
+                                    <Box key={index} sx={{display: "flex", alignItems: "center" , justifyContent: {xs:"center" , sm:"unset"}}}>
                                         <Box sx={{
                                             color: "#e9e9e2",
                                             fontSize: "13px",
@@ -166,7 +168,9 @@ function Footer() {
                                                 textDecoration: "underline"
                                             }
                                         }}
-                                        onClick={() => {navigate(`/product/${category.path}`)}}
+                                             onClick={() => {
+                                                 navigate(`/product/${category.path}`)
+                                             }}
                                         >
                                             {category.label}
                                         </Box>

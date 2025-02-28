@@ -111,7 +111,18 @@ const SingleProduct = () => {
                             </TableBody>
                         </Table>
 
-                        <Button variant="contained" fullWidth sx={{mt: 2 , backgroundColor: "#02154E" }}>
+                        <Button variant="contained" fullWidth sx={{mt: 2 ,backgroundColor: "#02154E",
+                            color: "#fff",
+                            fontSize: "11px",
+                            padding: "6px 14px",
+                            letterSpacing: "1px",
+                            fontWeight: 600,
+                            border: "2px solid transparent",
+                            "&:hover": {
+                                color: "#02154E",
+                                border: "2px solid #02154E",
+                                backgroundColor: "white",
+                            }, }}>
                             ADD TO INQUIRY CART
                         </Button>
                     </Grid>
