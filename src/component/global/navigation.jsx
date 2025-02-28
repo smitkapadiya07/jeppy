@@ -43,7 +43,7 @@ function Navigation() {
     const rndSubmenu = [
         { label: "SHAPE", path: "/rnd/shape" },
         { label: "INGREDIENTS", path: "/rnd/ingredients" },
-        { label: "METHODS", path: "/rnd/methods" },
+        { label: "METHODS", path: "/rnd/methode" },
     ];
 
     const languages = [

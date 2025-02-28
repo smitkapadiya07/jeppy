@@ -5,7 +5,7 @@ import Header from "../component/global/header.jsx";
 function Profile() {
     return (
         <>
-            <Header/>
+            <Header title={"Profile"} />
             <Companyprofile/>
         </>
     );
