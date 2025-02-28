@@ -1,6 +1,6 @@
 import React from 'react';
 import {Box, Container, Divider, Grid} from "@mui/material";
-import abcd from '../../assets/image/ABCD.png'
+import abcd from '../../assets/image/product/ABCD.png'
 
 
 function ProductsCategories() {
