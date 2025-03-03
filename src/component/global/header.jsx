@@ -29,7 +29,7 @@ function Header({bgImg ,heading , breadcrumbs}) {
                 }} />
 
                 <Box sx={{
-                    fontWeight: "800",
+                    fontWeight: "700",
                     fontSize: { md: "80px", xs: "40px" },
                     position: "absolute",
                     bottom: { md: "33%", xs: "25%" ,sm:"40%" },
