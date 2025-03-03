@@ -1,144 +1,197 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Box, Button, Container, TextField, Typography } from "@mui/material";
+import { Box, Button, Container, Grid, TextField, Typography, MenuItem, Checkbox, FormControlLabel } from "@mui/material";
 
 function Contact() {
-
-    const [showMap, setShowMap] = useState(false);
-
-    const handleRedirect = () => {
-        window.open(
-            "https://www.google.com/maps/place/Jeppy/@22.2670016,70.797555,13z/",
-            "_blank"
-        );
-    };
-
     const {
         register,
         handleSubmit,
         formState: { errors },
+        reset, // Reset form after successful submission
     } = useForm({ mode: "onBlur" });
 
-    const onSubmit = (data) => {
-        console.log("Form Data:", data);
+    const [loading, setLoading] = useState(false); // Loading state
+    const [error, setError] = useState(""); // Error state
+    const [success, setSuccess] = useState(""); // Success state
+
+    const onSubmit = async (data) => {
+        setLoading(true);
+        setError("");
+        setSuccess("");
+
+        try {
+            // Create payload with only required fields
+            const payload = {
+                name: data.name,
+                surname: data.surname,
+                contact: data.contact,
+                company: data.company || "", // Optional field
+                email: data.email,
+                request: data.request,
+                your_message: data. your_message,
+            };
+
+            const response = await fetch("https://valin-backend.onrender.com/api/contact", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(payload),
+            });
+
+            if (!response.ok) {
+                throw new Error("Something went wrong! Please try again.");
+            }
+
+            const result = await response.json();
+            console.log("Response:", result);
+
+            setSuccess("Your message has been sent successfully!");
+            reset(); // Reset form after success
+        } catch (err) {
+            setError(err.message);
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
-        <Box sx={{ padding: "60px 0px" }}>
-            <Container maxWidth="sm">
-                {/* Header Section */}
-                <Box
-                    sx={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                        mb: 3,
-                    }}
-                >
-                    <Typography
-                        variant="h5"
-                        fontWeight="bold"
-                        sx={{
-                            color: "black",
-                            textTransform: "uppercase",
-                            letterSpacing: "2px",
-                            transition: ".3s",
-                        }}
-                    >
-                        Get In Touch
+        <Container maxWidth="lg" sx={{ py: 8 }}>
+            <Grid container spacing={4}>
+                {/* Left Section */}
+                <Grid item xs={12} md={6}>
+                    <Typography variant="h4" sx={{ color: "#0033A1", fontWeight: "500", mb: 2 }}>
+                        Inquiries
                     </Typography>
-                    <Button
-                        sx={{
-                            backgroundColor: "#02154E",
-                            color: "#fff",
-                            fontSize: "11px",
-                            padding: "6px 14px",
-                            letterSpacing: "1px",
-                            fontWeight: 600,
-                            border: "2px solid transparent",
-                            "&:hover": {
-                                color: "#02154E",
-                                border: "2px solid #02154E",
-                                backgroundColor: "white",
-                            },
-                        }}
-                        onClick={handleRedirect} // Opens Google Maps in new tab
-                    >
-                        FIND US ON GOOGLE MAP
-                    </Button>
+                    <Typography sx={{ color: "#333", mb: 3, width: "400px" }}>
+                        We establish a relationship to realize your business vision by providing next-generation solutions for your snacks, with a tailored approach.
+                    </Typography>
+                </Grid>
 
-                    {showMap && (
-                        <Box mt={2} display="flex" justifyContent="center">
-                            <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d59076.64014482902!2d70.797555!3d22.2670016!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3959b584d2aba6c3%3A0xfa831224b3c5ed4a!2sJeppy!5e0!3m2!1sen!2sin!4v1740738443251!5m2!1sen!2sin"
-                                width="600" height="450" style="border:0;" allowFullScreen="" loading="lazy"
-                                referrerPolicy="no-referrer-when-downgrade"></iframe>
-                        </Box>
-                    )}
-                </Box>
+                {/* Right Section - Form */}
+                <Grid item xs={12} md={6}>
+                    <Box component="form" onSubmit={handleSubmit(onSubmit)}>
+                        <Grid container spacing={2}>
+                            <Grid item xs={6}>
+                                <TextField
+                                    fullWidth
+                                    label="Name"
+                                    variant="outlined"
+                                    {...register("name", { required: "Name is required" })}
+                                    error={!!errors.name}
+                                    helperText={errors.name?.message}
+                                />
+                            </Grid>
+                            <Grid item xs={6}>
+                                <TextField
+                                    fullWidth
+                                    label="Surname"
+                                    variant="outlined"
+                                    {...register("surname", { required: "Surname is required" })}
+                                    error={!!errors.surname}
+                                    helperText={errors.surname?.message}
+                                />
+                            </Grid>
+                            <Grid item xs={4}>
+                                <TextField
+                                    fullWidth
+                                    label="Phone"
+                                    variant="outlined"
+                                    {...register("contact", { required: "Phone is required" })}
+                                    error={!!errors.contact}
+                                    helperText={errors.contact?.message}
+                                />
+                            </Grid>
+                            <Grid item xs={4}>
+                                <TextField
+                                    fullWidth
+                                    label="Company"
+                                    variant="outlined"
+                                    {...register("company")}
+                                />
+                            </Grid>
+                            <Grid item xs={4}>
+                                <TextField
+                                    fullWidth
+                                    label="Email"
+                                    variant="outlined"
+                                    {...register("email", { required: "Email is required" })}
+                                    error={!!errors.email}
+                                    helperText={errors.email?.message}
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    fullWidth
+                                    select
+                                    label="Request"
+                                    variant="outlined"
+                                    {...register("request", { required: "Request is required" })}
+                                    error={!!errors.request}
+                                    helperText={errors.request?.message}
+                                >
+                                    <MenuItem value="general">General Inquiry</MenuItem>
+                                    <MenuItem value="support">Customer Support</MenuItem>
+                                    <MenuItem value="feedback">Feedback</MenuItem>
+                                </TextField>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    fullWidth
+                                    label="Your Message"
+                                    variant="outlined"
+                                    multiline
+                                    rows={4}
+                                    {...register("your_message", { required: "Message is required" })}
+                                    error={!!errors. your_message}
+                                    helperText={errors. your_message?.message}
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <FormControlLabel
+                                    control={<Checkbox {...register("privacy", { required: "You must agree to continue" })} />}
+                                    label={
+                                        <Typography variant="body2">
+                                            By using this form you agree with the storage and handling of your data by this website.
+                                            <Typography variant="h7" fontWeight="bold"> Read the Privacy Policy</Typography>
+                                        </Typography>
+                                    }
+                                />
+                            </Grid>
 
-                {/* Form Section */}
-                <Box component="form" onSubmit={handleSubmit(onSubmit)}>
-                    {[
-                        { name: "companyName", label: "Company Name" },
-                        { name: "contactPerson", label: "Contact Person Name" },
-                        { name: "contactNo", label: "Contact No." },
-                        { name: "email", label: "Email ID" },
-                        { name: "query", label: "Query / Remarks" },
-                    ].map((field, index) => (
-                        <TextField
-                            key={index}
-                            fullWidth
-                            variant="standard"
-                            label={field.label}
-                            {...register(field.name, { required: `${field.label} is required` })}
-                            error={!!errors[field.name]}
-                            helperText={errors[field.name]?.message || ""}
-                            sx={{
-                                mb: 2,
-                                width: "100%",
-                                display: "flex",
-                                justifyContent: "center",
-                                "& .MuiInputBase-root": {
-                                    fontSize: "14px",
-                                    textTransform: "uppercase",
-                                },
-                                "& .MuiInputLabel-root": {
-                                    fontSize: "14px",
-                                    color: "#B1B1B0",
-                                    textTransform: "uppercase",
-                                },
-                                "& .MuiInput-underline:before": {
-                                    borderBottomColor: "#B1B1B0",
-                                },
-                            }}
-                        />
-                    ))}
+                            {/* Error / Success Message */}
+                            <Grid item xs={12}>
+                                {error && <Typography color="error">{error}</Typography>}
+                                {success && <Typography color="green">{success}</Typography>}
+                            </Grid>
 
-                    {/* Submit Button */}
-                    <Button
-                        type="submit"
-                        sx={{
-                            backgroundColor: "#02154E",
-                            color: "#fff",
-                            fontSize: "11px",
-                            padding: "6px 14px",
-                            letterSpacing: "1px",
-                            fontWeight: 600,
-                            mt: 1,
-                            border: "2px solid transparent",
-                            "&:hover": {
-                                color: "#02154E",
-                                border: "2px solid #02154E",
-                                backgroundColor: "white",
-                            },
-                        }}
-                    >
-                        SEND MESSAGE
-                    </Button>
-                </Box>
-            </Container>
-        </Box>
+                            <Grid item xs={12}>
+                                <Button
+                                    type="submit"
+                                    disabled={loading}
+                                    sx={{
+                                        backgroundColor: "#0033A1",
+                                        color: "#fff",
+                                        fontSize: "13px",
+                                        fontWeight: "500",
+                                        padding: "15px 30px",
+                                        transition: "0.3s",
+                                        border: "1px solid #0033A1",
+                                        "&:hover": {
+                                            backgroundColor: "white",
+                                            color: "#0033A1",
+                                            border: "1px solid rgba(0, 51, 161, 0.5)",
+                                        },
+                                    }}
+                                >
+                                    {loading ? "Sending..." : "Send message"}
+                                </Button>
+                            </Grid>
+                        </Grid>
+                    </Box>
+                </Grid>
+            </Grid>
+        </Container>
     );
 }
 
