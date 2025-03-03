@@ -1,192 +1,362 @@
-import React, {useState} from "react";
-import {
-    Container,
-    Grid,
-    Box,
-    Dialog,
-    IconButton,
-    Typography,
-    Table,
-    TableBody,
-    TableRow,
-    TableCell,
-    Button
-} from "@mui/material";
-import {Swiper, SwiperSlide} from "swiper/react";
-import {Navigation, Thumbs} from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/thumbs";
-import CloseIcon from "@mui/icons-material/Close";
-import img1 from "../../assets/image/product/ABCD.png";
+import React, {useState} from 'react';
+import {Box, Chip, Container, Typography, Slider, LinearProgress, Grid, CircularProgress, Divider} from '@mui/material';
+import img1 from '../../assets/image/singleproducts/singleProducts1.jpg';
+import beforeImg from '../../assets/image/singleproducts/singleProducts1.jpg';
+import afterImg from '../../assets/image/singleproducts/s2.jpg';
 
-const product = {
-    name: "ABCD",
-    code: "113",
-    title: "Product Parameters",
-    images: [img1, img1, img1],
-    parameters: [
-        {label: "Moisture (%)", value: "8.5-9.5"},
-        {label: "Products Pcs in 10g", value: "38"},
-        {label: "Bulk Density (Before Fry)", value: "544 Gm/Ltr"},
-        {label: "Bulk Density (After Fry)", value: "54 Gm/Ltr"},
-        {label: "Salt (%)", value: "2.5-3.0"},
-        {label: "Frying Temperature", value: "185℃ to 190℃"},
-        {label: "Frying Time", value: "15-17 Seconds"}
-    ]
-};
+function Singleproducts() {
+    const [sliderValue, setSliderValue] = useState(50);
 
-const SingleProduct = () => {
-    const [open, setOpen] = useState(false);
+    const handleSliderChange = (event, newValue) => {
+        setSliderValue(newValue);
+    };
 
-    console.log(open , "45464555");
+    const data = [
+        {label: "Nutritional Content: Protein", value: 90, highLow: "HIGH"},
+        {label: "Fat Content", value: 10, highLow: "LOW"}
+    ];
+
 
     return (
-        <Box sx={{padding: "100px 0"}}>
+        <Box>
+            <Box
+                sx={{
+                    height: {xs: '60vh', md: '100vh'},
+                    width: '100%',
+                }}
+            >
+                <Box
+                    sx={{
+                        backgroundImage: `url(${img1})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                        height: '100%',
+                        width: '100%',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                    }}
+                >
+                    <Typography
+                        sx={{
+                            color: 'white',
+                            textAlign: 'center',
+                            fontSize: {xs: '28px', sm: '36px', md: '48px', lg: '64px', xl: '72px'},
+                            fontWeight: 500,
+                            maxWidth: {xs: '90%', md: '65%'},
+                            lineHeight: 1.2,
+                            padding: {xs: '0 1rem', md: '0'},
+                        }}
+                    >
+                        Soy Micropellet with poppy seeds
+                    </Typography>
+                </Box>
+            </Box>
+
             <Container maxWidth="lg">
-                <Grid container spacing={4} alignItems="center">
-                    {/* Product Image Section */}
-                    <Grid item xs={12} md={6}>
+                <Box
+                    sx={{
+                        display: 'flex',
+                        flexDirection: {xs: 'column', md: 'row'},
+                        justifyContent: 'space-between',
+                        padding: {xs: '20px', md: '50px'},
+                        gap: 5,
+                    }}
+                >
+                    <Box
+                        sx={{
+                            fontSize: {xs: '24px', sm: '32px', md: '40px', lg: '52px'},
+                            width: {xs: '100%', md: '50%'},
+                            color: '#0033CC',
+                            lineHeight: 1,
+                            textAlign: {xs: 'center', md: 'left'},
+                        }}
+                    >
+                        Soy-based micropellet with added poppy seeds, suitable for compression popping technology.
+                    </Box>
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: 3,
+                            padding: {xs: '1rem', md: '2rem'},
+                            width: {xs: '100%', md: '50%'},
+                        }}
+                    >
                         <Box
                             sx={{
-                                position: "relative",
-                                cursor: "pointer",
-                                backgroundColor:"#AFAEAC",
+                                borderBottom: '1px solid grey',
+                                paddingBottom: '1rem',
                             }}
-                            onClick={() => setOpen(true)} // Open fullscreen on click
                         >
-                            <Swiper
-                                style={{width: "100%"}}
-                                modules={[Navigation, Thumbs]}
-                                loop={true}
-                                navigation={{
-                                    nextEl: ".navigationNextRef",
-                                    prevEl: ".navigationPrevRef"
+                            <Box
+                                sx={{
+                                    fontSize: '16px',
+                                    margin: '0 0 16px',
+                                    color: '#161519',
+                                    textAlign: {xs: 'center', md: 'left'},
                                 }}
                             >
-                                {product.images.map((item, index) => (
-                                    <SwiperSlide key={index}>
-                                        <img src={item} alt={product.name} style={{width: "100%" , filter: "drop-shadow(0px 20px 15px rgba(229, 226, 221, 1))"}}/>
-                                    </SwiperSlide>
-                                ))}
-                            </Swiper>
+                                MAIN INGREDIENT
+                            </Box>
+                            <Box
+                                sx={{
+                                    display: 'flex',
+                                    flexWrap: 'wrap',
+                                    gap: 2,
+                                    justifyContent: {xs: 'center', md: 'flex-start'},
+                                }}
+                            >
+                                <Chip
+                                    label="Poppy Seeds"
+                                    variant="outlined"
+                                    sx={{
+                                        padding: '4px 20px',
+                                        fontSize: '16px',
+                                        color: '#161519',
+                                    }}
+                                />
+                                <Chip
+                                    label="Soy"
+                                    variant="outlined"
+                                    sx={{
+                                        padding: '4px 20px',
+                                        fontSize: '16px',
+                                        color: '#161519',
+                                    }}
+                                />
+                            </Box>
                         </Box>
-                    </Grid>
 
-                    {/* Product Details Section */}
-                    <Grid item xs={12} md={6}>
-                        <Typography variant="h5" sx={{
-                            fontSize: "20px",
-                            fontWeight: "600",
-                            letterSpacing: "2px",
-                            textTransform: "uppercase",
-                            lineHeight: "23px",
+                        <Box
+                            sx={{
+                                borderBottom: '1px solid grey',
+                                paddingBottom: '1rem',
+                            }}
+                        >
+                            <Box
+                                sx={{
+                                    fontSize: '16px',
+                                    margin: '0 0 16px',
+                                    color: '#161519',
+                                    textAlign: {xs: 'center', md: 'left'},
+                                }}
+                            >
+                                SHAPES
+                            </Box>
+                            <Box
+                                sx={{
+                                    display: 'flex',
+                                    flexWrap: 'wrap',
+                                    gap: 2,
+                                    justifyContent: {xs: 'center', md: 'flex-start'},
+                                }}
+                            >
+                                <Chip
+                                    label="Micropellet"
+                                    variant="outlined"
+                                    sx={{
+                                        padding: '4px 20px',
+                                        fontSize: '16px',
+                                        color: '#161519',
+                                    }}
+                                />
+                            </Box>
+                        </Box>
 
-                        }}>{product.name}</Typography>
-                        <Typography variant="subtitle1" sx={{
-                            fontSize: "13px",
-                            lineHeight: "23px",
-                            color: "#626262",
+                        <Box>
+                            <Box
+                                sx={{
+                                    fontSize: '16px',
+                                    margin: '0 0 16px',
+                                    color: '#161519',
+                                    textAlign: {xs: 'center', md: 'left'},
+                                }}
+                            >
+                                EXPANSION PROCESS
+                            </Box>
+                            <Box
+                                sx={{
+                                    display: 'flex',
+                                    flexWrap: 'wrap',
+                                    gap: 2,
+                                    justifyContent: {xs: 'center', md: 'flex-start'},
+                                }}
+                            >
+                                <Chip
+                                    label="Compression popping"
+                                    variant="outlined"
+                                    sx={{
+                                        padding: '4px 20px',
+                                        fontSize: '16px',
+                                        color: '#161519',
+                                    }}
+                                />
+                            </Box>
+                        </Box>
+                    </Box>
+                </Box>
+                <Box sx={{textAlign: 'center', padding: {xs: '20px 0', md: '40px 0'}}}>
+                    <Box
+                        sx={{
+                            fontSize: {xs: '24px', md: '36px'},
+                            color: '#1436c5',
+                            textAlign: 'center',
+                        }}
+                    >
+                        Before and after cooking
+                    </Box>
+                    <Box
+                        sx={{
+                            position: 'relative',
+                            width: '100%',
+                            margin: '20px auto',
+                            height: {xs: '300px', sm: '450px', md: '600px'},
+                            overflow: 'hidden',
+                        }}
+                    >
+                        <Box
+                            sx={{
+                                backgroundImage: `url(${afterImg})`,
+                                backgroundSize: 'cover',
+                                backgroundPosition: 'center',
+                                height: '100%',
+                                width: '100%',
+                                position: 'absolute',
+                            }}
+                        />
+                        <Box
+                            sx={{
+                                backgroundImage: `url(${beforeImg})`,
+                                backgroundSize: 'cover',
+                                backgroundPosition: 'center',
+                                height: '100%',
+                                width: '100%',
+                                position: 'absolute',
+                                clipPath: `inset(0 ${100 - sliderValue}% 0 0)`,
+                                transition: 'clip-path 0.3s ease-in-out',
+                            }}
+                        />
+                        <Slider
+                            value={sliderValue}
+                            onChange={handleSliderChange}
+                            sx={{
+                                position: 'absolute',
+                                bottom: '10px',
+                                left: '50%',
+                                transform: 'translateX(-50%)',
+                                width: {xs: '80%', md: '60%'},
+                                color: '#1436c5',
+                            }}
+                        />
+                    </Box>
+                </Box>
 
-                        }}>Product Code: {product.code}</Typography>
-                        <Typography variant="subtitle1" sx={{
-                            fontSize: "18px",
-                            color: "#373737",
-                            padding: "20px 0 0",
-                            lineHeight: "23px",
-                            letterSpacing: ".02px",
-                        }}> {product.title}</Typography>
-                        <Table sx={{ mt: 2, }}>
-                            <TableBody>
-                                {product.parameters.map((param, index) => (
-                                    <TableRow key={index} >
-                                        <TableCell sx={{ fontSize: "13px", padding: "8px", color: "#626262", fontWeight: "400", lineHeight: "23px", borderBottom: "1px solid #ddd" , width:"70%" }}>
-                                            {param.label}
-                                        </TableCell>
-                                        <TableCell sx={{ fontSize: "13px", padding: "8px", color: "#333", fontWeight: "500", lineHeight: "23px", borderBottom: "1px solid #ddd" }}>
-                                            {param.value}
-                                        </TableCell>
-                                    </TableRow>
-                                ))}
-                            </TableBody>
-                        </Table>
-
-                        <Button variant="contained" fullWidth sx={{mt: 2 ,backgroundColor: "#02154E",
-                            color: "#fff",
-                            fontSize: "11px",
-                            padding: "6px 14px",
-                            letterSpacing: "1px",
-                            fontWeight: 600,
-                            border: "2px solid transparent",
-                            "&:hover": {
-                                color: "#02154E",
-                                border: "2px solid #02154E",
-                                backgroundColor: "white",
-                            }, }}>
-                            ADD TO INQUIRY CART
-                        </Button>
-                    </Grid>
-                </Grid>
             </Container>
 
-            {/* Full-Screen Swiper Modal */}
-            <Dialog
-                open={open}
-                onClose={() => setOpen(false)}
-                fullScreen
-                sx={{bgcolor: "#fff"}} // White background
+            <Box
+                sx={{
+                    backgroundColor: "#0f1a2b",
+                    padding: "6rem 0",
+                }}
             >
-                <Box sx={{
-                    position: "relative",
-                    height: "100vh",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                }}>
-                    <IconButton
-                        sx={{
-                            position: "absolute",
-                            top: 10,
-                            right: 10,
-                            color: "#fff",
-                            border: "1px solid #000",
-                            backgroundColor: "#000",
-                            zIndex: 999,
-                            borderRadius: 0,
-                            "&:hover": {
-                                backgroundColor: "#000",
-                            }
-                        }}
-                        onClick={() => {
-                            setOpen(false)
-                        }}
-                    >
-                        <CloseIcon/>
-                    </IconButton>
+                <Container
+                    maxWidth="lg"
+                    sx={{
+                        color: "white",
+                        margin: "0 auto",
+                    }}
+                >
+                    <Grid container spacing={4} alignItems="center">
+                        <Grid item xs={12} md={6}>
+                            <Typography
+                                variant="overline"
+                                sx={{
+                                    color: "#fff",
+                                    fontSize: "18px",
+                                    textTransform: 'uppercase',
+                                    fontWeight: "500",
 
-                    <Swiper
-                        style={{width: "100%", height: "100%"}}
-                        modules={[Navigation, Thumbs]}
-                        loop={true}
-                        navigation
-                    >
-                        {product.images.map((item, index) => (
-                            <SwiperSlide key={index}
-                                         style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
-                                <Box sx={{
-                                    height: "750px",
-                                    width: "650px",
-                                }}>
-                                    <img src={item} alt="Product"
-                                         style={{width: "100%", height: "100%", objectFit: "contain"}}/>
+                                }}
+                            >
+                                TECHNICAL INFOS
+                            </Typography>
+                            <Typography
+                                variant="h6"
+                                sx={{
+                                    margin: "10px 0 0",
+                                    padding: "4px 0 0",
+                                    width: "90%",
+                                    fontSize: "28px",
+                                    color: "#fff",
+                                    fontWeight: "400",
+                                    lineHeight: "1.2",
+                                }}
+                            >
+                                Each of our shapes is unique and comes from processes designed
+                                to offer the best possible quality. Discover the features of our
+                                products.
+                            </Typography>
+                        </Grid>
+                        <Grid item xs={12} md={6}>
+                            {data.map((item, index) => (
+                                <Box key={index} mb={3}>
+                                    <Box sx={{
+                                        display: 'flex',
+                                        justifyContent: 'space-between',
+                                        margin: "0 0 10px"
+                                    }}>
+                                        <Box
+                                            sx={{
+                                                color: "#fff",
+                                                fontSize: "1em",
+                                                fontWeight: "bold",
+                                                textTransform: 'uppercase',
+                                                lineHeight: "1.35",
+                                                letterSpacing: "-0.02em",
+                                            }}
+                                        >
+                                            {item.label}
+                                        </Box>
+                                        <Box
+                                            sx={{
+                                                color: "#fff",
+                                                fontSize: "0.875rem",
+                                                fontWeight: "bold",
+                                            }}
+                                        >
+                                            {item.highLow}
+                                        </Box>
+                                    </Box>
+                                    <Box display="flex" alignItems="center">
+                                        <input
+                                            type="range"
+                                            value={item.value}
+                                            readOnly
+                                            style={{
+                                                flex: 1,
+                                                height: "8px",
+                                                appearance: "none",
+                                                backgroundColor: "grey",
+                                                marginRight: "0.5rem",
+                                                borderRadius: "5px",
+                                                outline: "none",
+                                                cursor: "pointer",
+                                                WebkitAppearance: "none",
+                                            }}
+                                        />
+
+                                    </Box>
                                 </Box>
-                            </SwiperSlide>
-                        ))}
-                    </Swiper>
-                </Box>
-            </Dialog>
+                            ))}
+                        </Grid>
+                    </Grid>
+                </Container>
+            </Box>
+
         </Box>
     );
-};
+}
 
-export default SingleProduct;
+export default Singleproducts;
+
