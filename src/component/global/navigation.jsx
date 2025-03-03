@@ -28,7 +28,7 @@ function Navigation() {
         { label: "PRODUCT", submenu: "product" },
         { label: "R & D", submenu: "rnd" },
         { label: "CONTACT", link: "/contact" },
-        { label: "Insight", link: "/insight" },
+        { label: "INSIGHT", link: "/insight" },
     ];
 
     const productSubmenu = [
