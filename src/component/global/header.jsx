@@ -1,53 +1,100 @@
-import React from "react";
-import {Box, Container, Grid, Typography} from "@mui/material";
-import {useNavigate} from "react-router-dom";
+'use client'
+import React from 'react';
+import { Box } from "@mui/material";
+import TrendingFlatIcon from '@mui/icons-material/TrendingFlat';
 
-function Header({title}) {
-
-    const navigate = useNavigate();
+function Header({bgImg ,heading , breadcrumbs}) {
+    // const router = useRouter();
 
     return (
-        <Box sx={{backgroundColor: "#004c7e", padding: "40px 0", marginTop:{xs:"unset" , md:"82px"} ,color: "white"}}>
-            <Container maxWidth={"lg"}>
-                <Grid container alignItems="center">
-                    <Grid item xs={12} sm={6}>
-                        <Box className={"OpenSans"}
-                             sx={{
-                                 fontWeight: "600",
-                                 textTransform: "uppercase",
-                                 fontSize: "18px",
-                                 color: "#fff",
-                                 lineHeight: "23px",
-                                 letterSpacing: "4px",
-                             }}>
-                            {title}
-                        </Box>
-                    </Grid>
+        <Box>
 
-                    <Grid item xs={12} sm={4} sx={{paddingTop: {xs:"10px" , sm:"0"} , textAlign: {sm:"center" , xs:"unset"}}}>
-                        <Box
-                            className={"OpenSans"}
-                            sx={{
-                                fontSize: "14px",
-                                textTransform: "uppercase",
-                                fontWeight: "400",
-                                letterSpacing: "2px",
-                                lineHeight: "23px",
-                                cursor: "pointer",
-                            }}
-                            onClick={() => navigate("/")}
-                        >Home
-                            <span
-                                style={{
-                                    padding: "0 10px"
-                                }}
-                            >|
-                            </span>
-                            {title}
-                        </Box>
-                    </Grid>
-                </Grid>
-            </Container>
+            <Box sx={{
+                background: `url(${bgImg}) no-repeat center center`,
+                backgroundSize: 'cover',
+                height: { xs: '388px', sm: "407px", lg: "588px" },
+                width: "100%",
+                position: "relative",
+                padding: { lg: "274px 0px 26px 0px", md: "70px 0px 50px 0px" },
+            }}>
+
+                <Box sx={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
+                    backgroundColor: "rgba(0, 0, 0, 0.4)",
+                    zIndex: 1,
+                }} />
+
+                <Box sx={{
+                    fontWeight: "800",
+                    fontSize: { md: "80px", xs: "40px" },
+                    position: "absolute",
+                    bottom: { md: "33%", xs: "25%" ,sm:"40%" },
+                    transform: { xs: 'translateY(-50%)', sm: 'unset' },
+                    left: { xs: '5%', md: "50px" },
+                    color: "#fff",
+                    padding: "15px",
+                    zIndex: 1,
+
+                }}>
+                    {heading}
+                    <Box
+                        sx={{
+                            width: "50px",
+                            height: "2px",
+                            backgroundColor: "white",
+                            mt:"10px",
+                            bottom:{marginBottom:".5px"}
+                        }}
+                    />
+                    <Box sx={{maxWidth: "100%",
+                        height: ".5px",
+                        backgroundColor: "#5A6168",
+                        margin: "0 0 25px",
+                        display:"flex",
+                        alignItems:"center",
+                    }}
+                    />
+
+                    <Box sx={{
+                        fontWeight: "500",
+                        fontSize: { xs: "15px" },
+                        color: "white",
+                        display: "flex",
+                        mt: { md: "45px", sm: "15px" },
+                    }}>
+                        {breadcrumbs.map((crumb, index) => (
+                            <React.Fragment key={index}>
+                                <Box
+                                    component="a"
+                                    onClick={() => router.push(crumb.route)}
+                                    sx={{
+                                        textDecoration: "none",
+                                        color: "white",
+                                        "&:hover": {
+                                            textDecoration: "underline",
+                                        },
+                                    }}
+                                >
+                                    {crumb.label}
+                                </Box>
+                                {index < breadcrumbs.length - 1 && (
+                                    <Box sx={{
+                                        padding: "0 15px",
+                                        display: "flex",
+                                        alignItems: "center",
+                                    }}>
+                                        <TrendingFlatIcon />
+                                    </Box>
+                                )}
+                            </React.Fragment>
+                        ))}
+                    </Box>
+                </Box>
+            </Box>
         </Box>
     );
 }
