@@ -11,6 +11,7 @@ import {
     ListItem,
     ListItemText,
     Collapse, Select,
+   InputBase
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -18,6 +19,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import logo from "../../assets/global/Jeppy_Logo-1_121x68.jpg";
 import {useNavigate} from "react-router-dom";
+import CloseIcon from "@mui/icons-material/Close";
 
 function Navigation() {
     const menuItems = [
@@ -59,7 +61,7 @@ function Navigation() {
     const [openSubmenu, setOpenSubmenu] = useState(null);
     const [anchorEl, setAnchorEl] = useState(null);
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-
+    const [open, setOpen] = useState(false);
     useEffect(() => {
         const handleResize = () => setIsMobile(window.innerWidth <= 768);
         window.addEventListener("resize", handleResize);
@@ -100,6 +102,7 @@ function Navigation() {
                                         cursor: "pointer",
                                         letterSpacing: "1px",
                                         fontWeight: 600,
+                                        py:1,
                                         "&:hover": { borderBottom: "2px solid #373737" },
                                     }}
                                     onMouseEnter={(!isMobile && !mobileMenuOpen && item.submenu) ? (e) => handleMenuOpen(e, item.submenu) : undefined}
@@ -162,9 +165,67 @@ function Navigation() {
                                 ))}
                             </Select>
 
-                            <IconButton sx={{ padding: "10px", borderRadius: "8px", color: "#027ab1" }}>
+                            <IconButton
+                                sx={{ padding: "10px", borderRadius: "8px", color: "#027ab1" }}
+                                onClick={() => setOpen(true)}
+                            >
                                 <SearchIcon fontSize="small" />
                             </IconButton>
+
+                            {/* Fullscreen Overlay */}
+                            {open && (
+                                <Box
+                                    sx={{
+                                        position: "fixed",
+                                        top: 0,
+                                        left: 0,
+                                        width: "100%",
+                                        height: "100vh",
+                                        backgroundColor: "rgba(255, 255, 255, 0.95)",
+                                        display: "flex",
+                                        alignItems: "center",
+                                        justifyContent: "center",
+                                        flexDirection: "column",
+                                        zIndex: 9999,
+                                        transition: "all 0.3s ease-in-out",
+                                    }}
+                                >
+                                    {/* Close Button */}
+                                    <IconButton
+                                        sx={{
+                                            position: "absolute",
+                                            top: 20,
+                                            right: 30,
+                                            color: "#000",
+                                        }}
+                                        onClick={() => setOpen(false)}
+                                    >
+                                        <CloseIcon fontSize="large" />
+                                    </IconButton>
+
+                                    {/* Search Input */}
+                                    <Box
+                                        sx={{
+                                            display: "flex",
+                                            alignItems: "center",
+                                            borderBottom: "2px solid red",
+                                            width: "60%",
+                                            maxWidth: "500px",
+                                        }}
+                                    >
+                                        <InputBase
+                                            placeholder="Enter your keyword"
+                                            sx={{
+                                                fontSize: "24px",
+                                                width: "100%",
+                                                padding: "10px",
+                                                color: "#333",
+                                            }}
+                                        />
+                                        <SearchIcon fontSize="large" sx={{ color: "#000" }} />
+                                    </Box>
+                                </Box>
+                            )}
                         </Box>
                     </Box>
 
