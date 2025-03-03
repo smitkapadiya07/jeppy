@@ -9,7 +9,7 @@ function Product() {
 
     return (
         <>
-            <Header title={formattedName} />
+            {/*<Header title={formattedName} />*/}
             <ProductsCategories />
         </>
     );

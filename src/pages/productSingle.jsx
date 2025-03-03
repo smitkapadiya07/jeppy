@@ -8,7 +8,7 @@ function ProductSingle() {
 
     return (
         <>
-            <Header title={productName}/>
+            {/*<Header title={productName}/>*/}
             <SingleProduct/>
         </>
     );
