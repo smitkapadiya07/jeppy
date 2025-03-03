@@ -7,7 +7,7 @@ function Header({title}) {
     const navigate = useNavigate();
 
     return (
-        <Box sx={{backgroundColor: "#004c7e", padding: "40px 0", mt:"81px" ,color: "white"}}>
+        <Box sx={{backgroundColor: "#004c7e", padding: "40px 0", marginTop:{xs:"unset" , md:"82px"} ,color: "white"}}>
             <Container maxWidth={"lg"}>
                 <Grid container alignItems="center">
                     <Grid item xs={12} sm={6}>
