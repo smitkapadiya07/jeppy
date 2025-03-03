@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import {
     AppBar,
     Toolbar,
@@ -11,7 +11,7 @@ import {
     ListItem,
     ListItemText,
     Collapse, Select,
-    InputBase
+   InputBase
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -23,11 +23,12 @@ import CloseIcon from "@mui/icons-material/Close";
 
 function Navigation() {
     const menuItems = [
-        {label: "HOME", link: "/"},
-        {label: "PROFILE", link: "/profile"},
-        {label: "PRODUCT", submenu: "product"},
-        {label: "R & D", submenu: "rnd"},
-        {label: "CONTACT", link: "/contact"},
+        { label: "HOME", link: "/" },
+        { label: "PROFILE", link: "/profile" },
+        { label: "PRODUCT", submenu: "product" },
+        { label: "R & D", submenu: "rnd" },
+        { label: "CONTACT", link: "/contact" },
+        { label: "Insight", link: "/insight" },
     ];
 
     const productSubmenu = [
@@ -359,8 +360,6 @@ function Navigation() {
                     </Select>
                 </Box>
             </Collapse>
-
-
         </>
     );
 }
