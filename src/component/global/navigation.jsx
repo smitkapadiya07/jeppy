@@ -97,6 +97,7 @@ function Navigation() {
         <>
             <AppBar sx={{
                 backgroundColor:scrolled ? '#003361' : {md:'transparent' , xs:"#003361"},
+                borderBottom: scrolled ? "1px solid #fff" : "unset" ,
                 color: "black",
                 boxShadow: "none",
                 padding: "20px 20px",
