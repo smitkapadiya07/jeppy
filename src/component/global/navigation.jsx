@@ -25,22 +25,22 @@ function Navigation() {
     const menuItems = [
         { label: "HOME", link: "/" },
         { label: "PROFILE", link: "/profile" },
-        { label: "PRODUCT", submenu: "product" },
+        { label: "PRODUCT", link: "/product" },
         { label: "R & D", submenu: "rnd" },
         { label: "CONTACT", link: "/contact" },
         { label: "Insight", link: "/insight" },
     ];
 
-    const productSubmenu = [
-        {label: "2D PAPAD SNACKS", path: "2d-papad-snacks"},
-        {label: "3D PAPAD SNACKS", path: "3d-papad-snacks"},
-        {label: "GLUTEN FREE PAPAD SNACKS", path: "gluten-free-papad-snacks"},
-        {label: "MICRO PAPAD PELLETS", path: "micro-papad-pellets"},
-        {label: "POTATO PAPAD SNACKS", path: "potato-papad-snacks"},
-        {label: "PROTEIN PAPAD SNACKS", path: "protein-papad-snacks"},
-        {label: "SHEETED PAPAD SNACKS", path: "sheeted-papad-snacks"},
-        {label: "VEGGI SNACKS PAPAD SNACKS", path: "veggi-snacks-papad-snacks"}
-    ];
+    // const productSubmenu = [
+    //     {label: "2D PAPAD SNACKS", path: "2d-papad-snacks"},
+    //     {label: "3D PAPAD SNACKS", path: "3d-papad-snacks"},
+    //     {label: "GLUTEN FREE PAPAD SNACKS", path: "gluten-free-papad-snacks"},
+    //     {label: "MICRO PAPAD PELLETS", path: "micro-papad-pellets"},
+    //     {label: "POTATO PAPAD SNACKS", path: "potato-papad-snacks"},
+    //     {label: "PROTEIN PAPAD SNACKS", path: "protein-papad-snacks"},
+    //     {label: "SHEETED PAPAD SNACKS", path: "sheeted-papad-snacks"},
+    //     {label: "VEGGI SNACKS PAPAD SNACKS", path: "veggi-snacks-papad-snacks"}
+    // ];
 
 
     const rndSubmenu = [
@@ -149,7 +149,7 @@ function Navigation() {
                                             },
                                         }}
                                     >
-                                        {(item.submenu === "product" ? productSubmenu : rndSubmenu).map((subItem, i) => (
+                                        {rndSubmenu.map((subItem, i) => (
                                             <MenuItem
                                                 key={i}
                                                 sx={{fontSize: "11px", color: "#C8C8C8", "&:hover": {color: "#FFF"}}}
@@ -158,7 +158,7 @@ function Navigation() {
                                                 //     handleMenuClose();
                                                 // }}
                                                 onClick={() => {
-                                                    navigate(item.submenu === "product" ? `/product/${subItem.path}` : `/rnd/${subItem.path}`)
+                                                    navigate(`/rnd/${subItem.path}`)
                                                     setOpenSubmenu(null)
                                                 }}
                                             >
@@ -298,7 +298,7 @@ function Navigation() {
                                 {item.submenu && (
                                     <Collapse in={openSubmenu === item.submenu} timeout="auto" unmountOnExit>
                                         <List sx={{paddingLeft: 4, paddingRight: 4}}> {/* Reduce padding */}
-                                            {(item.submenu === "product" ? productSubmenu : rndSubmenu).map((subItem, i) => (
+                                            {rndSubmenu.map((subItem, i) => (
                                                 <ListItem
                                                     key={i}
                                                     sx={{
@@ -308,7 +308,7 @@ function Navigation() {
                                                         cursor: "pointer"
                                                     }}
                                                     onClick={() => {
-                                                        navigate(item.submenu === "product" ? `/product/${subItem.path}` : `/rnd/${subItem.path}`)
+                                                        navigate(`/rnd/${subItem.path}`)
                                                         setOpenSubmenu(null)
                                                         setMobileMenuOpen(false)
                                                     }}

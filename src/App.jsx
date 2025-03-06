@@ -18,6 +18,7 @@ import EmailIcon from '@mui/icons-material/Email';
 import { keyframes } from '@mui/system';
 import ProductSingle from "./pages/productSingle.jsx";
 import Certificates from "./pages/certificates.jsx";
+import Inquirys from "./pages/Inquirys/inquirys.jsx";
 
 function App() {
     const actions = [
@@ -27,9 +28,9 @@ function App() {
     ];
 
     const ripple = keyframes`
-        0% { box-shadow: 0 0 0 0 rgba(219, 96, 24, 0.7); }
-        50% { box-shadow: 0 0 15px 10px rgba(219, 96, 24, 0.5); }
-        100% { box-shadow: 0 0 25px 20px rgba(219, 96, 24, 0); }
+        0% { box-shadow: 0 0 0 0 #035F9E; }
+        50% { box-shadow: 0 0 10px 5px #035F9E; }
+        100% { box-shadow: 0 0 15px 10px #035F9E; }
     `;
     return (
         <>
@@ -38,12 +39,13 @@ function App() {
                 <Route path="/" element={<Home/>}/>
                 <Route path="/contact" element={<Contacts/>}/>
                 <Route path="/profile" element={<Profile/>}/>
-                <Route path="/product/:name" element={<Product/>}/>
+                <Route path="/product" element={<Product/>}/>
                 <Route path="/rnd/shape" element={<Shapes />}/>
                 <Route path="/rnd/ingredients" element={<Ingredients />}/>
                 <Route path="/rnd/methode" element={<Methodss />}/>
-                <Route path="/products/:productName" element={<ProductSingle/>}/>
+                <Route path="/products/:id" element={<ProductSingle/>}/>
                 <Route path="/certificate" element={<Certificates/>}/>
+                <Route path="/inquiry" element={<Inquirys/>}/>
             </Routes>
             <SpeedDial
                 ariaLabel="SpeedDial Ripple Effect"
@@ -54,23 +56,23 @@ function App() {
                 }}
                 icon={
                     <SpeedDialIcon
-                        sx={{backgroundColor: "#DB6018", color: "white"}}
+                        sx={{backgroundColor: "#FFF", color: "#035F9E"}}
                     />
                 }
                 FabProps={{
                     sx: {
-                        backgroundColor: "#DB6018",
+                        backgroundColor: "#FFF",
                         animation: `${ripple} 1.5s infinite ease-out`,
-                        '&:hover': {backgroundColor: "#DB6018"}// Ripple always running
+                        '&:hover': {backgroundColor: "#FFF"}// Ripple always running
                     }
                 }}
             >
                 {actions.map((action) => (
                     <SpeedDialAction
                         sx={{
-                            backgroundColor: "#DB6018",
+                            backgroundColor: "#FFF",
                             color: "#035F9E",
-                            '&:hover': {backgroundColor: "#DB6018"}
+                            '&:hover': {backgroundColor: "#035F9E",color: '#FFF'}
                         }}
                         key={action.name}
                         icon={action.icon}
