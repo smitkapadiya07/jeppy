@@ -8,12 +8,14 @@ import {
     LinearProgress,
     Grid,
     Divider,
-    Button
+    Button, Popover, TableContainer, Table, Paper, TableHead, TableRow, TableCell, TableBody, TextField
 } from '@mui/material';
 import axios from "axios";
 import { CircularProgress } from "@mui/material";
 import {ChevronLeft, ChevronRight} from "@mui/icons-material";
 import {useNavigate, useParams} from "react-router-dom";
+import {useForm} from "react-hook-form";
+import log from "eslint-plugin-react/lib/util/log.js";
 
 function Singleproducts() {
     const {id} = useParams();
@@ -22,6 +24,47 @@ function Singleproducts() {
     const [isDragging, setIsDragging] = useState(false);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
+    const { register, handleSubmit, formState: { errors } } = useForm();
+
+    const [anchorEl, setAnchorEl] = useState(null);
+
+    // Open Popover
+    const handleOpen = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+
+
+    const inquirySubmit = (data) => {
+
+        const payload = {
+            product_id: id,
+            name: data.name,
+            productMessage: data.productMessage,
+            email: data.email,
+            contact: data.contact,
+            subject: data.subject,
+            message: data.message,
+        };
+
+
+        axios.post(`https://valin-backend.onrender.com/api/inquiry`, payload)
+            .then(response => console.log(response.data))
+        .catch(error => console.log(error));
+
+        handleClose();
+    }
+
+    // Close Popover
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+    // Form Submit
+    const onSubmit = (data) => {
+        console.log("Form Data:", data);
+        alert("Inquiry Submitted Successfully!");
+        handleClose(); // Popover Close after submit
+    };
 
     useEffect(() => {
         setLoading(true);
@@ -90,18 +133,127 @@ function Singleproducts() {
                             >
                                 {products.product_name}
                             </Typography>
-                            <Button
-                                variant="contained"
-                                sx={{
-                                    marginTop: 2,
-                                    backgroundColor: '#fff',
-                                    color: '#000',
-                                    fontWeight: "bold",
-                                }}
-                                onClick={() => navigate("/inquiry")}
-                            >
-                                ADD TO INQUIRY CART
-                            </Button>
+                            <Box sx={{ textAlign: "center", mt: 4 }}>
+                                {/* Button to Open Popover */}
+                                <Button
+                                    variant="contained"
+                                    sx={{
+                                        backgroundColor: "#fff",
+                                        color: "#000",
+                                        fontWeight: "bold",
+                                    }}
+                                    onClick={handleOpen} // 👈 Popover Open
+                                >
+                                    ADD TO INQUIRY CART
+                                </Button>
+
+                                {/* Popover Component */}
+                                <Popover
+                                    open={Boolean(anchorEl)}
+                                    anchorEl={anchorEl}
+                                    onClose={handleClose}
+                                    anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+                                    transformOrigin={{ vertical: "top", horizontal: "center" }}
+                                >
+                                    {/* Inquiry Form Inside Popover */}
+                                    <Box sx={{
+                                        width: "80vw", // 👈 Width badharyu
+                                        maxWidth: "600px",
+                                        p: 3,
+                                        backgroundColor: "#fff",
+                                        mt: 2
+                                    }}>
+                                        {/* Product Table */}
+                                        <TableContainer component={Paper}>
+                                            <Table>
+                                                <TableHead>
+                                                    <TableRow sx={{ backgroundColor: "#ece9e4" }}>
+                                                        <TableCell sx={{ fontWeight: "bold" }}>PRODUCT</TableCell>
+                                                        <TableCell sx={{ fontWeight: "bold" }}>MESSAGE</TableCell>
+                                                    </TableRow>
+                                                </TableHead>
+                                                <TableBody>
+                                                    <TableRow>
+                                                        <TableCell sx={{
+                                                            height:"140px",
+                                                            width:"190px",
+                                                            objectFit:"cover",
+                                                            backgroundRepeat:"no-repeat",
+                                                        }}>
+                                                            <img src={products.product_image} alt="" style={{ width:"100%",height:"100%" }} />
+                                                            {products.product_name}
+                                                        </TableCell>
+                                                        <TableCell>
+                                                            <TextField
+                                                                variant="standard"
+                                                                fullWidth
+                                                                {...register("productMessage",  "productMessage")}
+                                                            />
+                                                        </TableCell>
+                                                    </TableRow>
+                                                </TableBody>
+                                            </Table>
+                                        </TableContainer>
+
+                                        {/* Inquiry Form */}
+                                        <Box component="form" onSubmit={handleSubmit(inquirySubmit)} sx={{ display: "flex", flexDirection: "column", gap: 2, mt: 2 }}>
+                                            <TextField
+                                                label="Name *"
+                                                variant="standard"
+                                                fullWidth
+                                                {...register("name", { required: "Name is required" })}
+                                                error={!!errors.name}
+                                                helperText={errors.name?.message}
+                                            />
+
+                                            <TextField
+                                                label="Email *"
+                                                variant="standard"
+                                                fullWidth
+                                                {...register("email", {
+                                                    required: "Email is required",
+                                                    pattern: { value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, message: "Invalid email format" }
+                                                })}
+                                                error={!!errors.email}
+                                                helperText={errors.email?.message}
+                                            />
+
+                                            <TextField
+                                                label="Phone *"
+                                                variant="standard"
+                                                fullWidth
+                                                {...register("contact", { required: "Phone number is required" })}
+                                                error={!!errors.phone}
+                                                helperText={errors.phone?.message}
+                                            />
+
+                                            <TextField
+                                                label="Subject *"
+                                                variant="standard"
+                                                fullWidth
+                                                {...register("subject", { required: "Subject is required" })}
+                                                error={!!errors.subject}
+                                                helperText={errors.subject?.message}
+                                            />
+
+                                            <TextField
+                                                label="Message *"
+                                                variant="standard"
+                                                fullWidth
+                                                multiline
+                                                rows={3}
+                                                {...register("message", { required: "Message is required" })}
+                                                error={!!errors.message}
+                                                helperText={errors.message?.message}
+                                            />
+
+                                            <Button type="submit" variant="contained" sx={{ backgroundColor: "#001444", color: "white", mt: 2 }}>
+                                                SUBMIT ENQUIRY
+                                            </Button>
+                                        </Box>
+                                    </Box>
+                                </Popover>
+                            </Box>
                         </Box>
 
                     </Box>
