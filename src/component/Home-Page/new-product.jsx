@@ -41,7 +41,7 @@ const NewProduct = () => {
     };
 
     return (
-        <Box sx={{ width: "100%", textAlign: "center", backgroundColor: "#004c78" }}>
+        <Box sx={{ width: "100%", textAlign: "center", backgroundColor: "#003361" }}>
             <Box className="newProduct" sx={{ padding: "80px 0px", margin: "50px 0px 0 0" }}>
                 <Box sx={{ display: { xs: "unset", md: "flex" } }}>
                     <Box sx={{ width: { md: "50%", xs: "100%" } }}>

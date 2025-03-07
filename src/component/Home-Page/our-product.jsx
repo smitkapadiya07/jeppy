@@ -18,42 +18,42 @@ function OurProduct() {
         {
             image: Img1,
             title : "2D Papad Snacks",
-            path: "/product/2d-papad-snacks"
+            path: "/product"
         },
         {
             image: Img2,
             title : "3D Papad Snacks",
-            path: "/product/3d-papad-snacks"
+            path: "/product"
         },
         {
             image: Img3,
             title : "Glutein Free Papad Snacks",
-            path: "/product/gluten-free-papad-snacks"
+            path: "/product"
         },
         {
             image: Img4,
             title : "Micro papad pellets",
-            path:"/product/micro-papad-pellets"
+            path: "/product"
         },
         {
             image: Img5,
             title : "potato papad Snacks",
-            path: "/product/potato-papad-snacks"
+            path: "/product"
         },
         {
             image: Img6,
             title : "protein papad Snacks",
-            path: "/product/protein-papad-snacks"
+            path: "/product"
         },
         {
             image: Img7,
             title : "sheeted papad Snacks",
-            path: "/product/sheeted-papad-snacks"
+            path: "/product"
         },
         {
             image: Img8,
             title : "veggi snacks papad Snacks",
-            path: "/product/veggi-snacks-papad-snacks"
+            path: "/product"
         },
     ]
 

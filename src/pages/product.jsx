@@ -1,15 +1,17 @@
 import React from 'react';
 import ProductsCategories from "../component/product/productsCategories.jsx";
 import Header from "../component/global/header.jsx";
-import { useParams } from "react-router-dom";
+import bg1 from "../assets/image/product/bg2.jpeg";
 
 function Product() {
-    // const { name } = useParams();
-    // const formattedName = name.replaceAll('-', ' '); // Replace dashes with spaces
 
+    const breadCrumbs = [
+        {label:'Home',route: '/'},
+        {label:'Product',route: '/product'},
+    ]
     return (
         <>
-            {/*<Header title={formattedName} />*/}
+            <Header  bgImg={bg1} heading={'Products'} breadcrumbs={breadCrumbs}  />
             <ProductsCategories />
         </>
     );
