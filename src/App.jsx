@@ -19,6 +19,7 @@ import { keyframes } from '@mui/system';
 import ProductSingle from "./pages/productSingle.jsx";
 import Certificates from "./pages/certificates.jsx";
 import Insight from "./pages/insight.jsx";
+import Singleinsight from "./component/insight/singleinsight.jsx";
 
 function App() {
     const actions = [
@@ -46,6 +47,7 @@ function App() {
                 <Route path="/products/:productName" element={<ProductSingle/>}/>
                 <Route path="/certificate" element={<Certificates/>}/>
                 <Route path="/insight" element={<Insight/>}/>
+                <Route path="/singleinsight" element={<Singleinsight/>}/>
             </Routes>
             <SpeedDial
                 ariaLabel="SpeedDial Ripple Effect"
