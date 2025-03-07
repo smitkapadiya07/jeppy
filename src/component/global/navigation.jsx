@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import {
     AppBar,
     Toolbar,
@@ -11,9 +11,8 @@ import {
     ListItem,
     ListItemText,
     Collapse, Select,
-   InputBase
+    InputBase
 } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
 import MenuIcon from "@mui/icons-material/Menu";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
@@ -23,12 +22,12 @@ import CloseIcon from "@mui/icons-material/Close";
 
 function Navigation() {
     const menuItems = [
-        { label: "HOME", link: "/" },
-        { label: "PROFILE", link: "/profile" },
-        { label: "PRODUCT", link: "/product" },
-        { label: "R & D", submenu: "rnd" },
-        { label: "CONTACT", link: "/contact" },
-        { label: "INSIGHT", link: "/insight" },
+        {label: "HOME", link: "/"},
+        {label: "PROFILE", link: "/profile"},
+        {label: "PRODUCT", link: "/product"},
+        {label: "R & D", submenu: "rnd"},
+        {label: "CONTACT", link: "/contact"},
+        {label: "INSIGHT", link: "/insight"},
     ];
 
     // const productSubmenu = [
@@ -96,12 +95,12 @@ function Navigation() {
     return (
         <>
             <AppBar sx={{
-                backgroundColor:scrolled ? '#003361' : {md:'transparent' , xs:"#003361"},
-                borderBottom: scrolled ? "1px solid #fff" : "unset" ,
+                backgroundColor: scrolled ? '#003361' : {md: 'transparent', xs: "#003361"},
+                borderBottom: scrolled ? "1px solid #fff" : "unset",
                 color: "black",
                 boxShadow: "none",
                 padding: "20px 20px",
-                position: {md:"fixed" , xs:"sticky"},
+                position: {md: "fixed", xs: "sticky"},
                 zIndex: 999
             }}>
                 <Toolbar sx={{display: "flex", justifyContent: {md: "space-around", xs: "space-between"}}}>
@@ -191,68 +190,6 @@ function Navigation() {
                                     </MenuItem>
                                 ))}
                             </Select>
-
-                            <IconButton
-                                sx={{padding: "10px", borderRadius: "8px", color: "#fff"}}
-                                onClick={() => setOpen(true)}
-                            >
-                                <SearchIcon fontSize="small"/>
-                            </IconButton>
-
-                            {/* Fullscreen Overlay */}
-                            {open && (
-                                <Box
-                                    sx={{
-                                        position: "fixed",
-                                        top: 0,
-                                        left: 0,
-                                        width: "100%",
-                                        height: "100vh",
-                                        backgroundColor: "rgba(255, 255, 255, 0.95)",
-                                        display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "center",
-                                        flexDirection: "column",
-                                        zIndex: 9999,
-                                        transition: "all 0.3s ease-in-out",
-                                    }}
-                                >
-                                    {/* Close Button */}
-                                    <IconButton
-                                        sx={{
-                                            position: "absolute",
-                                            top: 20,
-                                            right: 30,
-                                            color: "#000",
-                                        }}
-                                        onClick={() => setOpen(false)}
-                                    >
-                                        <CloseIcon fontSize="large"/>
-                                    </IconButton>
-
-                                    {/* Search Input */}
-                                    <Box
-                                        sx={{
-                                            display: "flex",
-                                            alignItems: "center",
-                                            borderBottom: "2px solid red",
-                                            width: "60%",
-                                            maxWidth: "500px",
-                                        }}
-                                    >
-                                        <InputBase
-                                            placeholder="Enter your keyword"
-                                            sx={{
-                                                fontSize: "24px",
-                                                width: "100%",
-                                                padding: "10px",
-                                                color: "#333",
-                                            }}
-                                        />
-                                        <SearchIcon fontSize="large" sx={{color: "#000"}}/>
-                                    </Box>
-                                </Box>
-                            )}
                         </Box>
                     </Box>
 
@@ -263,69 +200,66 @@ function Navigation() {
                         }}>
                             <MenuIcon fontSize="medium"/>
                         </IconButton>
-                        <IconButton sx={{padding: "10px 20px", borderRadius: "8px", color: "#027ab1"}}>
-                            <SearchIcon fontSize="small"/>
-                        </IconButton>
                     </Box>
                 </Toolbar>
             </AppBar>
 
             <Collapse in={mobileMenuOpen} timeout="auto" unmountOnExit sx={{display: {xs: "flex", md: "none"}}}>
-                    <List sx={{backgroundColor: "#fff", color: "#000" , p:0}}>
-                        {menuItems.map((item, index) => (
-                            <Box key={index}>
-                                <ListItem
-                                    button
-                                    sx={{p: 0}}
-                                    onClick={() =>
-                                        item.submenu
-                                            ? setOpenSubmenu(openSubmenu === item.submenu ? null : item.submenu)
-                                            : (window.location.href = item.link || "#")
-                                    }
-                                >
-                                    <ListItemText
-                                        primary={item.label}
-                                        primaryTypographyProps={{
-                                            fontSize: "14px",
-                                            letterSpacing: "1px",
-                                            fontWeight: 600,
-                                            color: "#000",
-                                            padding: "8px 15px",
-                                            borderBottom: index !== menuItems.length - 1 ? '1px solid #828282' : 'none',
-                                        }}
-                                    />
-                                    {item.submenu && (openSubmenu === item.submenu ? <ExpandLessIcon/> : <ExpandMoreIcon/>)}
-                                </ListItem>
-                                {item.submenu && (
-                                    <Collapse in={openSubmenu === item.submenu} timeout="auto" unmountOnExit>
-                                        <List sx={{paddingLeft: 4, paddingRight: 4}}> {/* Reduce padding */}
-                                            {rndSubmenu.map((subItem, i) => (
-                                                <ListItem
-                                                    key={i}
-                                                    sx={{
-                                                        borderBottom: "0.5px solid rgba(255, 255, 255, 0.2)",
-                                                        p: "9px 0",
-                                                        "&:last-child": {borderBottom: "none"},
-                                                        cursor: "pointer"
-                                                    }}
-                                                    onClick={() => {
-                                                        navigate(`/rnd/${subItem.path}`)
-                                                        setOpenSubmenu(null)
-                                                        setMobileMenuOpen(false)
-                                                    }}
-                                                >
-                                                    <Typography variant="body2" sx={{fontSize: "11px", color: "#C8C8C8"}}>
-                                                        {subItem.label || subItem}
-                                                    </Typography>
-                                                </ListItem>
+                <List sx={{backgroundColor: "#fff", color: "#000", p: 0}}>
+                    {menuItems.map((item, index) => (
+                        <Box key={index}>
+                            <ListItem
+                                button
+                                sx={{p: 0}}
+                                onClick={() =>
+                                    item.submenu
+                                        ? setOpenSubmenu(openSubmenu === item.submenu ? null : item.submenu)
+                                        : (window.location.href = item.link || "#")
+                                }
+                            >
+                                <ListItemText
+                                    primary={item.label}
+                                    primaryTypographyProps={{
+                                        fontSize: "14px",
+                                        letterSpacing: "1px",
+                                        fontWeight: 600,
+                                        color: "#000",
+                                        padding: "8px 15px",
+                                        borderBottom: index !== menuItems.length - 1 ? '1px solid #828282' : 'none',
+                                    }}
+                                />
+                                {item.submenu && (openSubmenu === item.submenu ? <ExpandLessIcon/> : <ExpandMoreIcon/>)}
+                            </ListItem>
+                            {item.submenu && (
+                                <Collapse in={openSubmenu === item.submenu} timeout="auto" unmountOnExit>
+                                    <List sx={{paddingLeft: 4, paddingRight: 4}}> {/* Reduce padding */}
+                                        {rndSubmenu.map((subItem, i) => (
+                                            <ListItem
+                                                key={i}
+                                                sx={{
+                                                    borderBottom: "0.5px solid rgba(255, 255, 255, 0.2)",
+                                                    p: "9px 0",
+                                                    "&:last-child": {borderBottom: "none"},
+                                                    cursor: "pointer"
+                                                }}
+                                                onClick={() => {
+                                                    navigate(`/rnd/${subItem.path}`)
+                                                    setOpenSubmenu(null)
+                                                    setMobileMenuOpen(false)
+                                                }}
+                                            >
+                                                <Typography variant="body2" sx={{fontSize: "11px", color: "#C8C8C8"}}>
+                                                    {subItem.label || subItem}
+                                                </Typography>
+                                            </ListItem>
 
-                                            ))}
-                                        </List>
-                                    </Collapse>
-                                )}
-                            </Box>
-                        ))}
-                    </List>
+                                        ))}
+                                    </List>
+                                </Collapse>
+                            )}
+                        </Box>
+                    ))}
+                </List>
 
                 <Box sx={{width: "100%", backgroundColor: "#373737"}}>
                     <Select
