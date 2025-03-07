@@ -22,15 +22,15 @@ function Header({bgImg ,heading , breadcrumbs , description}) {
                 padding: { lg: "274px 0px 26px 0px", md: "70px 0px 50px 0px" },
             }}>
 
-                {/*<Box sx={{*/}
-                {/*    position: "absolute",*/}
-                {/*    top: 0,*/}
-                {/*    left: 0,*/}
-                {/*    width: "100%",*/}
-                {/*    height: "100%",*/}
-                {/*    backgroundColor: "rgba(0, 0, 0, 0.4)",*/}
-                {/*    zIndex: 1,*/}
-                {/*}} />*/}
+                <Box sx={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
+                    backgroundColor: "rgba(0, 0, 0, 0.4)",
+                    zIndex: 1,
+                }} />
 
                 <Box
                     sx={{
