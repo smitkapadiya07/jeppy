@@ -2,9 +2,12 @@
 import React from 'react';
 import { Box } from "@mui/material";
 import TrendingFlatIcon from '@mui/icons-material/TrendingFlat';
+import {useNavigate} from "react-router-dom";
 
 function Header({bgImg ,heading , breadcrumbs}) {
     // const router = useRouter();
+
+    const navigate = useNavigate();
 
     return (
         <Box>
@@ -70,10 +73,11 @@ function Header({bgImg ,heading , breadcrumbs}) {
                             <React.Fragment key={index}>
                                 <Box
                                     component="a"
-                                    onClick={() => router.push(crumb.route)}
+                                    onClick={() => navigate(crumb.route)}
                                     sx={{
                                         textDecoration: "none",
                                         color: "white",
+                                        cursor: "pointer",
                                         "&:hover": {
                                             textDecoration: "underline",
                                         },
