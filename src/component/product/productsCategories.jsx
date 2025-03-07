@@ -5,7 +5,6 @@ import {useNavigate} from "react-router-dom";
 import { CircularProgress } from "@mui/material";
 import axios from "axios";
 
-
 function ProductsCategories() {
 
     const [categories, setCategories] = useState([]);
@@ -23,7 +22,7 @@ function ProductsCategories() {
 
     useEffect(() => {
         const fetchData = async () => {
-            setLoading(true);  // Loader start thase
+            setLoading(true);
             try {
                 const response = await axios.get('https://valin-backend.onrender.com/api/product');
                 const products = response.data;
@@ -40,7 +39,7 @@ function ProductsCategories() {
             } catch (error) {
                 console.error("Failed to fetch data:", error);
             } finally {
-                setLoading(false);  // Loader bandh thase
+                setLoading(false);
             }
         };
 
@@ -72,8 +71,6 @@ function ProductsCategories() {
         setFilteredCategories(filtered);
     };
 
-
-
     const handleMainIngredientChange = (event, value) => {
         setSelectedMainIngredient(value);
         filterProducts(value, selectedShape);
@@ -88,7 +85,6 @@ function ProductsCategories() {
         setSelectedExpansionProcess(value);
         filterProducts(selectedMainIngredient, selectedShape, value);
     };
-
 
 
     return (
@@ -147,7 +143,6 @@ function ProductsCategories() {
                         </Grid>
                     </Grid>
 
-
                     {loading ? (
                         <Box sx={{ textAlign: "center", height: "50vh", display: "flex", justifyContent: "center", alignItems: "center" }}>
                             <CircularProgress />
@@ -191,7 +186,7 @@ function ProductsCategories() {
                                                         color: "#111013",
                                                         fontSize: { xs: "12px", md: "22px" },
                                                         textTransform: "uppercase",
-                                                        textAlign: "start",
+                                                        textAlign: "center",
                                                         marginTop: "15px",
                                                         lineHeight: "1.2",
                                                         fontWeight: "bold"
@@ -210,8 +205,6 @@ function ProductsCategories() {
                             </Box>
                         )
                     )}
-
-
 
                 </Box>
             </Container>
