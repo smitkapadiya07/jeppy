@@ -18,6 +18,8 @@ import EmailIcon from '@mui/icons-material/Email';
 import { keyframes } from '@mui/system';
 import ProductSingle from "./pages/productSingle.jsx";
 import Certificates from "./pages/certificates.jsx";
+import Insight from "./pages/insight.jsx";
+import Singleinsight from "./component/insight/singleinsight.jsx";
 import Inquirys from "./pages/Inquirys/inquirys.jsx";
 
 function App() {
@@ -26,7 +28,6 @@ function App() {
         {icon: <PhoneEnabledIcon />, name: 'contact', link: 'tel:+1234567890'},
         {icon: <WhatsAppIcon />, name: 'whatsapp', link: 'https://wa.me/1234567890'},
     ];
-
 
     const ripple = keyframes`
         0% {
@@ -52,6 +53,8 @@ function App() {
                 <Route path="/rnd/methode" element={<Methodss />}/>
                 <Route path="/products/:id" element={<ProductSingle/>}/>
                 <Route path="/certificate" element={<Certificates/>}/>
+                <Route path="/insight" element={<Insight/>}/>
+                <Route path="/singleinsight" element={<Singleinsight/>}/>
                 <Route path="/inquiry" element={<Inquirys/>}/>
             </Routes>
             <SpeedDial
@@ -93,8 +96,6 @@ function App() {
                         tooltipTitle={action.name}
                     />
                 ))}
-
-
             </SpeedDial>
 
             <Footer/>
