@@ -1,126 +1,98 @@
-import React from 'react';
-import {Box, Container, Grid, Typography} from "@mui/material";
-import {Link} from "react-router-dom";
-import logo from "../../assets/global/Jeppy_Logo-1_121x68.jpg"; // Ensure path is correct
+import React from "react";
+import { Box, Container, Grid, Typography, Link, IconButton, Paper } from "@mui/material";
+import { Facebook, Twitter, LinkedIn, Instagram } from "@mui/icons-material";
+import logo from "../../assets/global/Jeppy_Logo-1_121x68.jpg"; // Updated logo
+import snackIcon from "../../assets/global/nachos.png";
 
-function Footer() {
+const usefulLinks = ["Home", "About Us", "We Care", "Blog", "Career", "Contact Us"];
+const products = ["Panipuri", "2D", "3D", "Rice Papad", "Potato Based", "Event & Exhibition"];
+const socialLinks = [
+    { icon: <Facebook />, url: "#" },
+    { icon: <Twitter />, url: "#" },
+    { icon: <LinkedIn />, url: "#" },
+    { icon: <Instagram />, url: "#" }
+];
+
+const Footer = () => {
     return (
         <Box sx={{
-            marginBottom: "20px"
+            background: "#003361", // Updated gradient to match logo
+            color: "#fff",
+            py: 5,
+            boxShadow: "0 -5px 10px rgba(0,0,0,0.3)",
         }}>
-            <Box sx={{backgroundColor: "#fff", color: "#0033A1", padding: "60px 0px 150px 0px"}}>
-                <Container maxWidth="xl">
-                    <Grid container spacing={4} alignItems="center">
-
-                        {/* Left Section - Logo (50%) */}
-                        <Grid item xs={12} md={5} sx={{textAlign: {xs: "center", md: "left"}}}>
-                            <Box component="img" src={logo} alt="Company Logo" sx={{maxWidth: "150px"}}/>
-                        </Grid>
-
-                        {/* Right Section - Address, Contacts, Quick Links (50%) */}
-                        <Grid item xs={12} md={7}>
-                            <Grid container spacing={2}>
-
-                                {/* Address */}
-                                <Grid item xs={12} sm={4}>
-                                    <Typography variant="h6" sx={{fontWeight: "500", mb: 1}}>Address</Typography>
-                                    <Typography variant="body2" sx={{
-                                        color: "#000",
-                                        transition: "color 0.3s ease",
-                                        fontSize: "16px",
-                                        "&:hover": {color: "#0033A1"}
-                                    }}>
-                                        Via dell'Industria, 24 <br/>
-                                        Zona Industriale Paludi <br/>
-                                        32016 - Alpago - (BL) <br/>
-                                        Italy
-                                    </Typography>
-                                </Grid>
-
-                                {/* Contacts */}
-                                <Grid item xs={12} sm={4}>
-                                    <Typography variant="h6" sx={{fontWeight: "500", mb: 1}}>Contacts</Typography>
-                                    <Typography variant="body2" sx={{
-                                        color: "#000",
-                                        transition: "color 0.3s ease",
-                                        fontSize: "16px",
-                                        "&:hover": {color: "#0033A1"}
-                                    }}>T +39 0437 989130</Typography>
-                                    <Typography variant="body2" sx={{
-                                        color: "#000",
-                                        transition: "color 0.3s ease",
-                                        fontSize: "16px",
-                                        "&:hover": {color: "#0033A1"}
-                                    }}>F +39 0437 989188</Typography>
-                                    <Typography variant="body2" sx={{
-                                        color: "#000",
-                                        transition: "color 0.3s ease",
-                                        fontSize: "16px",
-                                        "&:hover": {color: "#0033A1"}
-                                    }}>E info@valin.net</Typography>
-                                </Grid>
-
-                                {/* Quick Links */}
-                                <Grid item xs={12} sm={4}>
-                                    <Typography variant="h6" sx={{fontWeight: "500", mb: 1}}>Quick Links</Typography>
-                                    <Link to={"/certificate"} style={{
-                                        display: "block",
-                                        textDecoration: "none",
-                                        color: "#000",
-                                        transition: "color 0.3s ease",
-                                        marginBottom: "5px",
-                                        fontSize: "16px",
-                                        "&:hover": {color: "#0033A1", textDecoration: "underline"}
-                                    }}>
-                                        <Typography sx={{
-                                            "&:hover": {
-                                                color: "#0033A1",
-                                            }
-                                        }}>Certificate</Typography>
-                                    </Link>
-                                    <Typography variant="body2" sx={{
-                                        color: "#000",
-                                        transition: "color 0.3s ease",
-                                        marginBottom: "5px",
-                                        fontSize: "16px",
-                                        "&:hover": {color: "#0033A1"}
-                                    }}>Terms & Conditions</Typography>
-                                    <Typography variant="body2" sx={{
-                                        color: "#000",
-                                        transition: "color 0.3s ease",
-                                        fontSize: "16px",
-                                        "&:hover": {color: "#0033A1"}
-                                    }}>Privacy Policy</Typography>
-                                </Grid>
-
-                            </Grid>
-                        </Grid>
-
+            <Container>
+                <Grid container spacing={4}>
+                    {/* Brand Section */}
+                    <Grid item xs={12} md={4} textAlign="center">
+                        <Box elevation={3} sx={{ borderRadius: 3, }}>
+                            <img src={logo} height={80} alt="Jeppy Logo" style={{ maxWidth: "100%" }} />
+                            <Typography variant="body2" sx={{color: "#FFFFFF",mt:2}}>
+                                Incredible Snacks for Every Occasion!
+                            </Typography>
+                        </Box>
                     </Grid>
 
-                </Container>
+                    {/* Useful Links */}
+                    <Grid item xs={12} md={2}>
+                        <Typography variant="h6" sx={{ borderBottom: "2px solid #000000", pb: 1 }}>
+                            Useful Links
+                        </Typography>
+                        {usefulLinks.map((link, index) => (
+                            <Link key={index} href="#" color="inherit" underline="none" sx={{
+                                display: "block",
+                                mt: 1,
+                                transition: "color 0.3s, transform 0.3s",
+                                '&:hover': { color: "#000000", transform: "translateX(5px)" }
+                            }}>
+                                {link}
+                            </Link>
+                        ))}
+                    </Grid>
 
-            </Box>
-            <Box sx={{
-                borderBottom: "1px solid rgba(182, 190, 204, 0.2)",
-                width: "100%",
-            }}>
-            </Box>
-            <Container maxWidth={"xl"}>
-                <Box sx={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    my: "25px",
-                    fontSize: "16px"
-                }}>
-                    <Box>© 2022 V.AL.IN. SRL – VAT IT00767150253</Box>
-                    <Box>Privacy & Cookie Policy</Box>
-                    <Box>Bolded by we-go-logo</Box>
-                </Box>
+                    {/* Products */}
+                    <Grid item xs={12} md={2}>
+                        <Typography variant="h6" sx={{ borderBottom: "2px solid #000000", pb: 1 }}>
+                            Products
+                        </Typography>
+                        {products.map((product, index) => (
+                            <Link key={index} href="#" color="inherit" underline="none" sx={{
+                                display: "block",
+                                mt: 1,
+                                transition: "color 0.3s, transform 0.3s",
+                                '&:hover': { color: "#000000", transform: "translateX(5px)" }
+                            }}>
+                                {product}
+                            </Link>
+                        ))}
+                    </Grid>
+
+                    {/* Social Media */}
+                    <Grid item xs={12} md={4} textAlign="center">
+                        <Typography variant="h6" sx={{ borderBottom: "2px solid #000000", pb: 1 }}>
+                            Follow Us
+                        </Typography>
+                        <Box display="flex" justifyContent="center" gap={1} mt={1}>
+                            {socialLinks.map((social, index) => (
+                                <IconButton key={index} href={social.url} sx={{
+                                    color: "#003361",
+                                    bgcolor: "#fff",
+                                    '&:hover': {
+                                        bgcolor: '#003361',
+                                        color:"#FFF",
+
+                                    }
+                                }}>
+                                    {social.icon}
+                                </IconButton>
+                            ))}
+                        </Box>
+                        <img src={snackIcon} alt="Snack Icon" width={60} style={{ marginTop: "25px", filter: "invert(100 %)" }} />
+                    </Grid>
+                </Grid>
             </Container>
         </Box>
-    )
-        ;
-}
+    );
+};
 
 export default Footer;
