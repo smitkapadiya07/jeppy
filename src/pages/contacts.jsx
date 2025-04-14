@@ -14,7 +14,7 @@ function Contacts() {
 
     return (
         <>
-            <Header  bgImg={bg1} heading={'Contact Us'} breadcrumbs={breadCrumbs}  />
+                <Header  bgImg={bg1} heading={'Contact Us'} breadcrumbs={breadCrumbs}  />
             <Contact/>
         </>
     );

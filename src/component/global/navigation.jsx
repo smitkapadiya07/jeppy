@@ -23,6 +23,7 @@ import CloseIcon from "@mui/icons-material/Close";
 function Navigation() {
     const menuItems = [
         {label: "HOME", link: "/"},
+        {label: "Our-Process", link: "/ourprocess"},
         {label: "PROFILE", link: "/profile"},
         {label: "PRODUCT", link: "/product"},
         {label: "R & D", submenu: "rnd"},
@@ -95,7 +96,7 @@ function Navigation() {
     return (
         <>
             <AppBar sx={{
-                backgroundColor: scrolled ? '#003361' : {md: 'transparent', xs: "#003361"},
+                backgroundColor: scrolled ? '# ' : {md: 'transparent', xs: "#003361"},
                 borderBottom: scrolled ? "1px solid #fff" : "unset",
                 color: "black",
                 boxShadow: "none",
@@ -111,7 +112,7 @@ function Navigation() {
                     </Box>
 
                     <Box sx={{display: {xs: "none", md: "flex"}, gap: 4, alignItems: "center"}}>
-                        {menuItems.map((item, index) => (
+                         {menuItems.map((item, index) => (
                             <Box key={index} onMouseLeave={handleMenuClose}>
                                 <Typography
                                     variant="body1"

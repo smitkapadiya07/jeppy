@@ -11,7 +11,7 @@ import {
     Button, Popover, TableContainer, Table, Paper, TableHead, TableRow, TableCell, TableBody, TextField
 } from '@mui/material';
 import axios from "axios";
-import { CircularProgress } from "@mui/material";
+import {CircularProgress} from "@mui/material";
 import {ChevronLeft, ChevronRight} from "@mui/icons-material";
 import {useNavigate, useParams} from "react-router-dom";
 import {useForm} from "react-hook-form";
@@ -24,7 +24,7 @@ function Singleproducts() {
     const [isDragging, setIsDragging] = useState(false);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const {register, handleSubmit, formState: {errors}} = useForm();
 
     const [anchorEl, setAnchorEl] = useState(null);
 
@@ -49,7 +49,7 @@ function Singleproducts() {
 
         axios.post(`https://valin-backend.onrender.com/api/inquiry`, payload)
             .then(response => console.log(response.data))
-        .catch(error => console.log(error));
+            .catch(error => console.log(error));
 
         handleClose();
     }
@@ -93,8 +93,14 @@ function Singleproducts() {
     return (
         <Box>
             {loading ? (
-                <Box sx={{ textAlign: "center", height: "50vh", display: "flex", justifyContent: "center", alignItems: "center" }}>
-                    <CircularProgress />
+                <Box sx={{
+                    textAlign: "center",
+                    height: "50vh",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center"
+                }}>
+                    <CircularProgress/>
                 </Box>
             ) : (
                 <>
@@ -133,7 +139,7 @@ function Singleproducts() {
                             >
                                 {products.product_name}
                             </Typography>
-                            <Box sx={{ textAlign: "center", mt: 4 }}>
+                            <Box sx={{textAlign: "center", mt: 4}}>
                                 {/* Button to Open Popover */}
                                 <Button
                                     variant="contained"
@@ -152,8 +158,8 @@ function Singleproducts() {
                                     open={Boolean(anchorEl)}
                                     anchorEl={anchorEl}
                                     onClose={handleClose}
-                                    anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-                                    transformOrigin={{ vertical: "top", horizontal: "center" }}
+                                    anchorOrigin={{vertical: "bottom", horizontal: "center"}}
+                                    transformOrigin={{vertical: "top", horizontal: "center"}}
                                 >
                                     {/* Inquiry Form Inside Popover */}
                                     <Box sx={{
@@ -167,27 +173,28 @@ function Singleproducts() {
                                         <TableContainer component={Paper}>
                                             <Table>
                                                 <TableHead>
-                                                    <TableRow sx={{ backgroundColor: "#ece9e4" }}>
-                                                        <TableCell sx={{ fontWeight: "bold" }}>PRODUCT</TableCell>
-                                                        <TableCell sx={{ fontWeight: "bold" }}>MESSAGE</TableCell>
+                                                    <TableRow sx={{backgroundColor: "#ece9e4"}}>
+                                                        <TableCell sx={{fontWeight: "bold"}}>PRODUCT</TableCell>
+                                                        <TableCell sx={{fontWeight: "bold"}}>MESSAGE</TableCell>
                                                     </TableRow>
                                                 </TableHead>
                                                 <TableBody>
                                                     <TableRow>
                                                         <TableCell sx={{
-                                                            height:"140px",
-                                                            width:"190px",
-                                                            objectFit:"cover",
-                                                            backgroundRepeat:"no-repeat",
+                                                            height: "140px",
+                                                            width: "190px",
+                                                            objectFit: "cover",
+                                                            backgroundRepeat: "no-repeat",
                                                         }}>
-                                                            <img src={products.product_image} alt="" style={{ width:"100%",height:"100%" }} />
+                                                            <img src={products.product_image} alt=""
+                                                                 style={{width: "100%", height: "100%"}}/>
                                                             {products.product_name}
                                                         </TableCell>
                                                         <TableCell>
                                                             <TextField
                                                                 variant="standard"
                                                                 fullWidth
-                                                                {...register("productMessage",  "productMessage")}
+                                                                {...register("productMessage", "productMessage")}
                                                             />
                                                         </TableCell>
                                                     </TableRow>
@@ -196,12 +203,13 @@ function Singleproducts() {
                                         </TableContainer>
 
                                         {/* Inquiry Form */}
-                                        <Box component="form" onSubmit={handleSubmit(inquirySubmit)} sx={{ display: "flex", flexDirection: "column", gap: 2, mt: 2 }}>
+                                        <Box component="form" onSubmit={handleSubmit(inquirySubmit)}
+                                             sx={{display: "flex", flexDirection: "column", gap: 2, mt: 2}}>
                                             <TextField
                                                 label="Name *"
                                                 variant="standard"
                                                 fullWidth
-                                                {...register("name", { required: "Name is required" })}
+                                                {...register("name", {required: "Name is required"})}
                                                 error={!!errors.name}
                                                 helperText={errors.name?.message}
                                             />
@@ -212,7 +220,10 @@ function Singleproducts() {
                                                 fullWidth
                                                 {...register("email", {
                                                     required: "Email is required",
-                                                    pattern: { value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/, message: "Invalid email format" }
+                                                    pattern: {
+                                                        value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                                                        message: "Invalid email format"
+                                                    }
                                                 })}
                                                 error={!!errors.email}
                                                 helperText={errors.email?.message}
@@ -222,7 +233,7 @@ function Singleproducts() {
                                                 label="Phone *"
                                                 variant="standard"
                                                 fullWidth
-                                                {...register("contact", { required: "Phone number is required" })}
+                                                {...register("contact", {required: "Phone number is required"})}
                                                 error={!!errors.phone}
                                                 helperText={errors.phone?.message}
                                             />
@@ -231,7 +242,7 @@ function Singleproducts() {
                                                 label="Subject *"
                                                 variant="standard"
                                                 fullWidth
-                                                {...register("subject", { required: "Subject is required" })}
+                                                {...register("subject", {required: "Subject is required"})}
                                                 error={!!errors.subject}
                                                 helperText={errors.subject?.message}
                                             />
@@ -242,12 +253,13 @@ function Singleproducts() {
                                                 fullWidth
                                                 multiline
                                                 rows={3}
-                                                {...register("message", { required: "Message is required" })}
+                                                {...register("message", {required: "Message is required"})}
                                                 error={!!errors.message}
                                                 helperText={errors.message?.message}
                                             />
 
-                                            <Button type="submit" variant="contained" sx={{ backgroundColor: "#001444", color: "white", mt: 2 }}>
+                                            <Button type="submit" variant="contained"
+                                                    sx={{backgroundColor: "#001444", color: "white", mt: 2}}>
                                                 SUBMIT ENQUIRY
                                             </Button>
                                         </Box>
@@ -255,7 +267,6 @@ function Singleproducts() {
                                 </Popover>
                             </Box>
                         </Box>
-
                     </Box>
 
                     <Container maxWidth="lg">
@@ -351,10 +362,8 @@ function Singleproducts() {
                                         </Box>
                                     );
                                 })}
-
                             </Box>
                         </Box>
-
 
                         <Box sx={{textAlign: 'center', padding: {xs: '20px 0', md: '40px 0'}}}>
                             <Box
@@ -366,7 +375,6 @@ function Singleproducts() {
                             >
                                 Before and after cooking
                             </Box>
-
                             <Box
                                 sx={{
                                     position: 'relative',
@@ -396,7 +404,6 @@ function Singleproducts() {
                                         zIndex: 2,
                                     }}
                                 />
-
                                 <Box
                                     sx={{
                                         backgroundImage: `url(${products.cooking_after_image})`,
@@ -408,7 +415,6 @@ function Singleproducts() {
                                         zIndex: 2,
                                     }}
                                 />
-
                                 <Box
                                     sx={{
                                         backgroundImage: `url(${products.cooking_before_image})`,
@@ -422,7 +428,6 @@ function Singleproducts() {
                                         zIndex: 2,
                                     }}
                                 />
-
                                 <Box
                                     sx={{
                                         position: 'absolute',
@@ -436,7 +441,6 @@ function Singleproducts() {
                                         transition: isDragging ? 'none' : 'left 0.3s ease-in-out',
                                     }}
                                 />
-
                                 <Box
                                     sx={{
                                         position: 'absolute',

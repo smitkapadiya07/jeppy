@@ -17,10 +17,10 @@ import PhoneEnabledIcon from '@mui/icons-material/PhoneEnabled';
 import EmailIcon from '@mui/icons-material/Email';
 import { keyframes } from '@mui/system';
 import ProductSingle from "./pages/productSingle.jsx";
-import Certificates from "./pages/certificates.jsx";
 import Insight from "./pages/insight.jsx";
 import Singleinsight from "./component/insight/singleinsight.jsx";
 import Inquirys from "./pages/Inquirys/inquirys.jsx";
+import Ourprocesss from "./pages/our-proces/ourprocesss.jsx";
 
 function App() {
     const actions = [
@@ -45,6 +45,7 @@ function App() {
             <Navigation/>
             <Routes>
                 <Route path="/" element={<Home/>}/>
+                <Route path="/ourprocess" element={<Ourprocesss/>}/>
                 <Route path="/contact" element={<Contacts/>}/>
                 <Route path="/profile" element={<Profile/>}/>
                 <Route path="/product" element={<Product/>}/>
@@ -52,7 +53,6 @@ function App() {
                 <Route path="/rnd/ingredients" element={<Ingredients />}/>
                 <Route path="/rnd/methode" element={<Methodss />}/>
                 <Route path="/products/:id" element={<ProductSingle/>}/>
-                <Route path="/certificate" element={<Certificates/>}/>
                 <Route path="/insight" element={<Insight/>}/>
                 <Route path="/singleinsight" element={<Singleinsight/>}/>
                 <Route path="/inquiry" element={<Inquirys/>}/>
