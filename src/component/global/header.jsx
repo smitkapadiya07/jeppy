@@ -64,23 +64,6 @@ function Header({bgImg ,heading , breadcrumbs , description}) {
 
                 }}>
                     {heading}
-                    {/*<Box*/}
-                    {/*    sx={{*/}
-                    {/*        width: "50px",*/}
-                    {/*        height: "2px",*/}
-                    {/*        backgroundColor: "white",*/}
-                    {/*        mt:"10px",*/}
-                    {/*        bottom:{marginBottom:".5px"}*/}
-                    {/*    }}*/}
-                    {/*/>*/}
-                    {/*<Box sx={{maxWidth: "100%",*/}
-                    {/*    height: ".5px",*/}
-                    {/*    backgroundColor: "#5A6168",*/}
-                    {/*    margin: "0 0 25px",*/}
-                    {/*    display:"flex",*/}
-                    {/*    alignItems:"center",*/}
-                    {/*}}*/}
-                    {/*/>*/}
 
 
                     <Box sx={{
