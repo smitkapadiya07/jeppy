@@ -81,9 +81,9 @@ function OurProduct() {
                                    flexDirection: "column",
                                    alignItems: "center",
                                    textAlign: "center",
-                                   transition: "transform 0.3s ease-in-out", // Smooth transition
+                                   transition: "transform 0.3s ease-in-out", 
                                    "&:hover": {
-                                       transform: "scale(1.05)", // Slightly enlarge on hover
+                                       transform: "scale(1.05)", 
                                    }
 
                                }}
