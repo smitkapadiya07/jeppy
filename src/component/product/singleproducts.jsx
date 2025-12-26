@@ -28,7 +28,6 @@ function Singleproducts() {
 
     const [anchorEl, setAnchorEl] = useState(null);
 
-    // Open Popover
     const handleOpen = (event) => {
         setAnchorEl(event.currentTarget);
     };
@@ -54,16 +53,14 @@ function Singleproducts() {
         handleClose();
     }
 
-    // Close Popover
     const handleClose = () => {
         setAnchorEl(null);
     };
 
-    // Form Submit
     const onSubmit = (data) => {
         console.log("Form Data:", data);
         alert("Inquiry Submitted Successfully!");
-        handleClose(); // Popover Close after submit
+        handleClose();
     };
 
     useEffect(() => {
@@ -148,7 +145,7 @@ function Singleproducts() {
                                         color: "#000",
                                         fontWeight: "bold",
                                     }}
-                                    onClick={handleOpen} // 👈 Popover Open
+                                    onClick={handleOpen}
                                 >
                                     ADD TO INQUIRY CART
                                 </Button>
@@ -163,7 +160,7 @@ function Singleproducts() {
                                 >
                                     {/* Inquiry Form Inside Popover */}
                                     <Box sx={{
-                                        width: "80vw", // 👈 Width badharyu
+                                        width: "80vw", 
                                         maxWidth: "600px",
                                         p: 3,
                                         backgroundColor: "#fff",
@@ -277,7 +274,7 @@ function Singleproducts() {
                                 justifyContent: 'space-between',
                                 alignItems: 'flex-start',
                                 padding: {xs: '20px', md: '50px'},
-                                gap: {xs: 3, md: 5},
+                                gap: {xs: 3, md: 6},
                             }}
                         >
                             <Box
@@ -297,7 +294,7 @@ function Singleproducts() {
                                     display: 'flex',
                                     flexDirection: 'column',
                                     gap: {xs: 2, md: 3},
-                                    padding: {xs: '1rem', md: '2rem'},
+                                    padding: {xs: '1rem', md: '3rem'},
                                     width: {xs: '100%', md: '50%'},
                                 }}
                             >
