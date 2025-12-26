@@ -34,8 +34,7 @@ const companyDescription = [
             " alongside the option of customization of snacks has increased its demand in the market for Papad snacks, leading it to " +
             "expand and establish four subsidiary plants and is still enthusiastically expanding."},
     {text: "With the company’s vision and its core purpose, <strong> JEPPY </strong> has set itself up as a reliable brand that" +
-            "<strong> guarantees a 100%</strong> steady and plenteous supply of snacks to our customers with a vision<strong> “To Be the" +
-            " Global Leader in Snack Papad Industry.”</strong>"},
+            "<strong> guarantees a 100%</strong> steady and plenteous supply of snacks to our customers with a vision<strong>.},
 
 ];
 
@@ -59,7 +58,6 @@ const CompanyProfile = () => {
                                     <Box sx={{margin: "0 0 22px"}}>
                                         <img src={stat.icon} alt={stat.label} style={{
                                             width: "80px", height: "80px",
-                                            // margin: "0px 241px"
                                         }}/>
                                     </Box>
 
@@ -67,7 +65,6 @@ const CompanyProfile = () => {
                                         fontSize: "56px",
                                         lineHeight: "60px",
                                         color: "#626262",
-                                        // padding:"0 10px 0 0"
                                     }}>
                                         {stat.value}
                                     </Box>
