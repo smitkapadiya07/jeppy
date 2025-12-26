@@ -12,7 +12,6 @@ function Header({bgImg ,heading , breadcrumbs , description}) {
 
     return (
         <Box>
-
             <Box sx={{
                 background: `url(${bgImg}) no-repeat center center`,
                 backgroundSize: 'cover',
@@ -28,7 +27,7 @@ function Header({bgImg ,heading , breadcrumbs , description}) {
                     left: 0,
                     width: "100%",
                     height: "100%",
-                    backgroundColor: "rgba(0, 0, 0, 0.4)",
+                    backgroundColor: "rgba(0, 0, 0, 0.5)",
                     zIndex: 1,
                 }} />
 
