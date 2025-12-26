@@ -108,8 +108,8 @@ function ProductsCategories() {
                                         xs: "center",
                                         sm: "flex-start",
                                     },
-                                    gap: 2,
-                                    padding: 1,
+                                    gap: 1,
+                                    padding: 1.5,
                                 }}
                             >
                                 <Autocomplete
