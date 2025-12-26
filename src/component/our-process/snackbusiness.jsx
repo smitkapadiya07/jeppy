@@ -35,7 +35,7 @@ function SnackBusiness() {
 
     return (
         <Container maxWidth="lg">
-            <Box ref={containerRef} sx={{ mb: 5 }}>
+            <Box ref={containerRef} sx={{ mb: 4 }}>
 
                 <Box mt={2} ref={breadcrumbsRef}>
                     <Breadcrumbs aria-label="breadcrumb">
@@ -52,7 +52,7 @@ function SnackBusiness() {
                     mt={4}
                     sx={{
                         background: "#F5F5F5",
-                        padding: "40px",
+                        padding: "42px",
                         borderRadius: "20px",
                         boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
                     }}
