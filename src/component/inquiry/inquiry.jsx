@@ -16,8 +16,7 @@ function Inquiry() {
             margin: "auto",
             p: 2,
             backgroundColor: "#fff",
-            // position: "relative",  // 👈 Navbar thi niche levava
-            marginTop: "40px"  // 👈 Navbar ni upar na chade
+            marginTop: "40px"  
         }}>
             {/* Product Table */}
             <TableContainer component={Paper}>
@@ -97,7 +96,7 @@ function Inquiry() {
                     helperText={errors.message?.message}
                 />
 
-                <Button type="submit" variant="contained" sx={{ backgroundColor: "#001444", color: "white", mt: 2 }}>
+                <Button type="submit" variant="contained" sx={{ backgroundColor: "#001444", color: "white", mt: 1.5 }}>
                     SUBMIT ENQUIRY
                 </Button>
             </Box>
