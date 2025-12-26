@@ -31,16 +31,6 @@ function Navigation() {
         {label: "INSIGHT", link: "/insight"},
     ];
 
-    // const productSubmenu = [
-    //     {label: "2D PAPAD SNACKS", path: "2d-papad-snacks"},
-    //     {label: "3D PAPAD SNACKS", path: "3d-papad-snacks"},
-    //     {label: "GLUTEN FREE PAPAD SNACKS", path: "gluten-free-papad-snacks"},
-    //     {label: "MICRO PAPAD PELLETS", path: "micro-papad-pellets"},
-    //     {label: "POTATO PAPAD SNACKS", path: "potato-papad-snacks"},
-    //     {label: "PROTEIN PAPAD SNACKS", path: "protein-papad-snacks"},
-    //     {label: "SHEETED PAPAD SNACKS", path: "sheeted-papad-snacks"},
-    //     {label: "VEGGI SNACKS PAPAD SNACKS", path: "veggi-snacks-papad-snacks"}
-    // ];
 
 
     const rndSubmenu = [
