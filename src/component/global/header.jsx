@@ -5,7 +5,6 @@ import TrendingFlatIcon from '@mui/icons-material/TrendingFlat';
 import {useNavigate} from "react-router-dom";
 
 function Header({bgImg ,heading , breadcrumbs , description}) {
-    // const router = useRouter();
     console.log(bgImg,"000000000000");
 
     const navigate = useNavigate();
