@@ -144,10 +144,6 @@ function Navigation() {
                                             <MenuItem
                                                 key={i}
                                                 sx={{fontSize: "11px", color: "#C8C8C8", "&:hover": {color: "#FFF"}}}
-                                                // onClick={() => {
-                                                //     window.location.href = subItem.path ? subItem.path : "#";
-                                                //     handleMenuClose();
-                                                // }}
                                                 onClick={() => {
                                                     navigate(`/rnd/${subItem.path}`)
                                                     setOpenSubmenu(null)
