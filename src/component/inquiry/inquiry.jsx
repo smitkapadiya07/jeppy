@@ -12,7 +12,7 @@ function Inquiry() {
 
     return (
         <Box sx={{
-            maxWidth: 600,
+            maxWidth: 620,
             margin: "auto",
             p: 2,
             backgroundColor: "#fff",
@@ -44,7 +44,6 @@ function Inquiry() {
                 </Table>
             </TableContainer>
 
-            {/* Inquiry Form */}
             <Box component="form" onSubmit={handleSubmit(onSubmit)} sx={{ display: "flex", flexDirection: "column", gap: 2, mt: 2 }}>
                 <TextField
                     label="Name *"
